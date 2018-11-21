@@ -336,9 +336,9 @@ class LoginViewController: UIViewController {
                 }
                 guard let uid = result?.user.uid else { return }
                 print("Successfully logged in user with \(uid)")
-//                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
-//                tabBarController.setupViewControllers()
-//                self.dismiss(animated: true, completion: nil)
+                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
+                tabBarController.setupViewControllers()
+                self.dismiss(animated: true, completion: nil)
             }
             
         } else {

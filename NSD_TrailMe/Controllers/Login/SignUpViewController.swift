@@ -537,9 +537,9 @@ class SignUpViewController: UIViewController {
                                 if let err = error {
                                     print(err.localizedDescription)
                                 }
-//                                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
-//                                tabBarController.setupViewControllers()
-//                                self.dismiss(animated: true, completion: nil)
+                                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
+                                tabBarController.setupViewControllers()
+                                self.dismiss(animated: true, completion: nil)
                             })
                         }
                     })
