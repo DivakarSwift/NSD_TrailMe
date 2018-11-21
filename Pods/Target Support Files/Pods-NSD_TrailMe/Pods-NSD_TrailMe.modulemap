@@ -1,0 +1,6 @@
+framework module Pods_NSD_TrailMe {
+  umbrella header "Pods-NSD_TrailMe-umbrella.h"
+
+  export *
+  module * { export * }
+}

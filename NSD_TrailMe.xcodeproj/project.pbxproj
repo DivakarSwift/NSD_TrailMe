@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E92BA1D9B2B8BBA49DFE294 /* Pods_NSD_TrailMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5DA3AF2EE539015C345281 /* Pods_NSD_TrailMe.framework */; };
+		3C40EC5B21A46A4400913C8E /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40EC5A21A46A4400913C8E /* ResetPasswordController.swift */; };
 		3C56D1FD21A3BB72008AFD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */; };
-		3C56D1FF21A3BB72008AFD3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D1FE21A3BB72008AFD3B /* ViewController.swift */; };
-		3C56D20221A3BB72008AFD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20021A3BB72008AFD3B /* Main.storyboard */; };
+		3C56D1FF21A3BB72008AFD3B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D1FE21A3BB72008AFD3B /* LoginViewController.swift */; };
 		3C56D20521A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D20321A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld */; };
 		3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20621A3BB73008AFD3B /* Assets.xcassets */; };
 		3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */; };
+		3C6E3A8E21A441EA00FBA0D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */; };
+		3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF1B90421A49133003EA849 /* GoogleService-Info.plist */; };
+		3CF1B90721A4957C003EA849 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1B90621A4957C003EA849 /* SignUpViewController.swift */; };
+		3CF1B90921A49D0E003EA849 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1B90821A49D0E003EA849 /* CheckBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C40EC5A21A46A4400913C8E /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		3C56D1F921A3BB72008AFD3B /* NSD_TrailMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSD_TrailMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C56D1FE21A3BB72008AFD3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3C56D20121A3BB72008AFD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3C56D1FE21A3BB72008AFD3B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C56D20421A3BB72008AFD3B /* NSD_TrailMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NSD_TrailMe.xcdatamodel; sourceTree = "<group>"; };
 		3C56D20621A3BB73008AFD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C56D20921A3BB73008AFD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C56D20B21A3BB73008AFD3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3CF1B90421A49133003EA849 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3CF1B90621A4957C003EA849 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3CF1B90821A49D0E003EA849 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		3F5DA3AF2EE539015C345281 /* Pods_NSD_TrailMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSD_TrailMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91C2A6A1BBFE0D907033E703 /* Pods-NSD_TrailMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSD_TrailMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSD_TrailMe/Pods-NSD_TrailMe.debug.xcconfig"; sourceTree = "<group>"; };
+		FD3FDB960610E40915217944 /* Pods-NSD_TrailMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSD_TrailMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSD_TrailMe/Pods-NSD_TrailMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E92BA1D9B2B8BBA49DFE294 /* Pods_NSD_TrailMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		226EEEF7B2E8BE9C7E30E15D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91C2A6A1BBFE0D907033E703 /* Pods-NSD_TrailMe.debug.xcconfig */,
+				FD3FDB960610E40915217944 /* Pods-NSD_TrailMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3C56D1F021A3BB72008AFD3B = {
 			isa = PBXGroup;
 			children = (
 				3C56D1FB21A3BB72008AFD3B /* NSD_TrailMe */,
 				3C56D1FA21A3BB72008AFD3B /* Products */,
+				226EEEF7B2E8BE9C7E30E15D /* Pods */,
+				C6003F8AEE7598CE9FA2099D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +81,42 @@
 			isa = PBXGroup;
 			children = (
 				3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */,
-				3C56D1FE21A3BB72008AFD3B /* ViewController.swift */,
-				3C56D20021A3BB72008AFD3B /* Main.storyboard */,
+				3C6E3A9021A4433900FBA0D0 /* Login */,
 				3C56D20621A3BB73008AFD3B /* Assets.xcassets */,
 				3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */,
 				3C56D20B21A3BB73008AFD3B /* Info.plist */,
+				3CF1B90421A49133003EA849 /* GoogleService-Info.plist */,
 				3C56D20321A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld */,
+				3C6E3A8F21A4422900FBA0D0 /* Utilities */,
 			);
 			path = NSD_TrailMe;
+			sourceTree = "<group>";
+		};
+		3C6E3A8F21A4422900FBA0D0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */,
+				3CF1B90821A49D0E003EA849 /* CheckBox.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3C6E3A9021A4433900FBA0D0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3C56D1FE21A3BB72008AFD3B /* LoginViewController.swift */,
+				3CF1B90621A4957C003EA849 /* SignUpViewController.swift */,
+				3C40EC5A21A46A4400913C8E /* ResetPasswordController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C6003F8AEE7598CE9FA2099D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F5DA3AF2EE539015C345281 /* Pods_NSD_TrailMe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +126,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C56D20E21A3BB73008AFD3B /* Build configuration list for PBXNativeTarget "NSD_TrailMe" */;
 			buildPhases = (
+				80ECDCD3DF081343DD9DB53C /* [CP] Check Pods Manifest.lock */,
 				3C56D1F521A3BB72008AFD3B /* Sources */,
 				3C56D1F621A3BB72008AFD3B /* Frameworks */,
 				3C56D1F721A3BB72008AFD3B /* Resources */,
+				DA383F305092B482FC53159E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +181,97 @@
 			files = (
 				3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */,
 				3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */,
-				3C56D20221A3BB72008AFD3B /* Main.storyboard in Resources */,
+				3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		80ECDCD3DF081343DD9DB53C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NSD_TrailMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA383F305092B482FC53159E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NSD_TrailMe/Pods-NSD_TrailMe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NSD_TrailMe/Pods-NSD_TrailMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C56D1F521A3BB72008AFD3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C56D1FF21A3BB72008AFD3B /* ViewController.swift in Sources */,
+				3CF1B90721A4957C003EA849 /* SignUpViewController.swift in Sources */,
+				3C56D1FF21A3BB72008AFD3B /* LoginViewController.swift in Sources */,
 				3C56D20521A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld in Sources */,
+				3CF1B90921A49D0E003EA849 /* CheckBox.swift in Sources */,
 				3C56D1FD21A3BB72008AFD3B /* AppDelegate.swift in Sources */,
+				3C40EC5B21A46A4400913C8E /* ResetPasswordController.swift in Sources */,
+				3C6E3A8E21A441EA00FBA0D0 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3C56D20021A3BB72008AFD3B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3C56D20121A3BB72008AFD3B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +401,7 @@
 		};
 		3C56D20F21A3BB73008AFD3B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91C2A6A1BBFE0D907033E703 /* Pods-NSD_TrailMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +420,7 @@
 		};
 		3C56D21021A3BB73008AFD3B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD3FDB960610E40915217944 /* Pods-NSD_TrailMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
