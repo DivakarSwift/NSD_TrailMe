@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     var validPassword = false
     var validEmail = false
     var activeField: UITextField?
+    let activityIndicator = UIActivityIndicatorView()
     
     // Text Fields Controllers
     let emailTextFieldController: MDCTextInputControllerOutlined
@@ -210,6 +211,7 @@ class SignUpViewController: UIViewController {
         validEmail = false
         validFirstName = false
         validLastName = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
         registerForKeyboardNotifications()
     }
@@ -281,6 +283,7 @@ class SignUpViewController: UIViewController {
         scrollView.addSubview(signUpButton)
         scrollView.addSubview(privacyLabel)
         scrollView.addSubview(privacyCheckBox)
+        scrollView.addSubview(activityIndicator)
         
         constraints.append(NSLayoutConstraint(item: headerLabel,
                                               attribute: .top,
@@ -435,6 +438,8 @@ class SignUpViewController: UIViewController {
                                               attribute: .centerX,
                                               multiplier: 1,
                                               constant: 0))
+        constraints.append(NSLayoutConstraint(item: activityIndicator, attribute: .top, relatedBy: .equal, toItem: haveAccountButton, attribute: .bottom, multiplier: 1, constant: 8))
+        constraints.append(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: scrollView, attribute: .centerX, multiplier: 1, constant: 0))
         NSLayoutConstraint.activate(constraints)
         
     }
@@ -525,6 +530,15 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func handleSignUp() {
+        signUpButton.isEnabled = false
+        if activityIndicator.isAnimating == true {
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
+        }
+        else {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+        }
         if (validPassword == true && validUserName == true && validLastName == true && validFirstName == true && validEmail == true){
             //print("All fields valid... signing up")
             guard let firstName = firstNameTextField.text else { return }

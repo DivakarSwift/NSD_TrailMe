@@ -50,7 +50,7 @@ class HistoryController: UITableViewController, NSFetchedResultsControllerDelega
         }catch let err {
             print(err)
         }
-        //tableView.reloadData()
+        tableView.reloadData()
     }
    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
