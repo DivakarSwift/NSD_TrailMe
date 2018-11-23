@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    
+    <!--
+     Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+     waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+     Xcode will simulate a route visiting each waypoint.
+     -->
+    <wpt lat="41.2820096" lon="-81.4875784">
+        <name>7716 Creekside Pkwy</name>
+        
+        <!--
+         Optionally provide a time element for each waypoint. Xcode will interpolate movement
+         at a rate of speed based on the time elapsed between each waypoint. If you do not provide
+         a time element, then Xcode will use a fixed rate of speed.
+         
+         Waypoints must be sorted by time in ascending order.
+         -->
+        <time>2014-09-24T14:55:30Z</time>
+    </wpt>
+    <wpt lat="41.2820096" lon="-81.4875784">
+        <time>2014-09-24T14:55:31Z</time>
+    </wpt>
+    <wpt lat="41.2820096" lon="-81.4875784">
+        <time>2014-09-24T14:55:40Z</time>
+    </wpt>
+    <wpt lat="41.28195" lon="-81.48758">
+        <time>2014-09-24T14:55:50Z</time>
+    </wpt>
+    <wpt lat="41.28189" lon="-81.48758">
+        <time>2014-09-24T14:55:55Z</time>
+    </wpt>
+    <wpt lat="41.28184" lon="-81.48758">
+        <time>2014-09-24T14:56:00Z</time>
+    </wpt>
+    <wpt lat="41.28172" lon="-81.48755">
+        <time>2014-09-24T14:56:05Z</time>
+    </wpt>
+    <wpt lat="41.28167" lon="-81.48753">
+        <time>2014-09-24T14:56:10Z</time>
+    </wpt>
+    <wpt lat="41.28162" lon="-81.4875">
+        <time>2014-09-24T14:56:15Z</time>
+    </wpt>
+    <wpt lat="41.28147" lon="-81.48746">
+        <time>2014-09-24T14:56:20Z</time>
+    </wpt>
+    <wpt lat="41.28138" lon="-81.48744">
+        <time>2014-09-24T14:56:25Z</time>
+    </wpt>
+    <wpt lat="41.28128" lon="-81.48744">
+        <time>2014-09-24T14:56:30Z</time>
+    </wpt>
+    <wpt lat="41.28113" lon="-81.48746">
+        <time>2014-09-24T14:56:35Z</time>
+    </wpt>
+    <wpt lat="41.281" lon="-81.48748">
+        <time>2014-09-24T14:56:40Z</time>
+    </wpt>
+    <wpt lat="41.28095" lon="-81.48749">
+        <time>2014-09-24T14:56:45Z</time>
+    </wpt>
+    <wpt lat="41.28064" lon="-81.48751">
+        <time>2014-09-24T14:56:50Z</time>
+    </wpt>
+    <wpt lat="41.2806353" lon="-81.4875081">
+        <time>2014-09-24T14:56:55Z</time>
+    </wpt>
+    <wpt lat="41.28063" lon="-81.48789">
+        <time>2014-09-24T114:57:00Z</time>
+    </wpt>
+    <wpt lat="41.28064" lon="-81.48802">
+        <time>2014-09-24T14:57:05Z</time>
+    </wpt>
+    <wpt lat="41.28065" lon="-81.48817">
+        <time>2014-09-24T14:57:10Z</time>
+    </wpt>
+    <wpt lat="41.28067" lon="-81.48864">
+        <time>2014-09-24T14:57:15Z</time>
+    </wpt>
+    <wpt lat="41.28071" lon="-81.48944">
+        <time>2014-09-24T14:57:20Z</time>
+    </wpt>
+    <wpt lat="41.2807084" lon="-81.4894448">
+        <time>2014-09-24T14:57:25Z</time>
+    </wpt>
+    <wpt lat="41.27991" lon="-81.48944">
+        <time>2014-09-24T14:57:30Z</time>
+    </wpt>
+    <wpt lat="41.27954" lon="-81.48944">
+        <time>2014-09-24T14:57:35Z</time>
+    </wpt>
+    <wpt lat="41.27942" lon="-81.48944">
+        <time>2014-09-24T14:57:40Z</time>
+    </wpt>
+    <wpt lat="41.27907" lon="-81.48944">
+        <time>2014-09-24T14:57:45Z</time>
+    </wpt>
+    <wpt lat="41.27882" lon="-81.48945">
+        <time>2014-09-24T14:57:50Z</time>
+    </wpt>
+    <wpt lat="41.27807" lon="-81.48944">
+        <time>2014-09-24T14:57:55Z</time>
+    </wpt>
+    <wpt lat="41.2776" lon="-81.48943">
+        <time>2014-09-24T14:58:00Z</time>
+    </wpt>
+    <wpt lat="41.27718" lon="-81.48943">
+        <time>2014-09-24T14:58:05Z</time>
+    </wpt>
+    <wpt lat="41.27705" lon="-81.48943">
+        <time>TP2014-09-24T14:58:10Z</time>
+    </wpt>
+    <wpt lat="41.27579" lon="-81.48943">
+        <time>2014-09-24T14:58:15Z</time>
+    </wpt>
+    <wpt lat="41.27468" lon="-81.48944">
+        <time>2014-09-24T14:58:20Z</time>
+    </wpt>
+    <!--
+     <wpt lat="41.27458" lon="-81.48944">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.27345" lon="-81.48944">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2716" lon="-81.48945">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.27124" lon="-81.48945">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.27071" lon="-81.48945">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26984" lon="-81.48946">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26959" lon="-81.48946">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26837" lon="-81.48946">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26748" lon="-81.48947">
+     <time>TP02014-09-24T14:55:37Z41</time>
+     </wpt>
+     <wpt lat="41.26673" lon="-81.48947">
+     <time>TP2014-09-24T14:55:37Z042</time>
+     </wpt>
+     <wpt lat="41.26636" lon="-81.48947">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2641" lon="-81.48947">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26301" lon="-81.48948">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26192" lon="-81.48948">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26149" lon="-81.48948">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26137" lon="-81.48947">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26131" lon="-81.48947">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26124" lon="-81.48945">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26115" lon="-81.48943">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26108" lon="-81.48939">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26099" lon="-81.48934">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26091" lon="-81.48927">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26084" lon="-81.48921">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26071" lon="-81.48907">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2606" lon="-81.48897">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26052" lon="-81.4889">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26028" lon="-81.48875">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2602841" lon="-81.4887506">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26035" lon="-81.48765">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26037" lon="-81.48737">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2604" lon="-81.48708">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26043" lon="-81.48688">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26047" lon="-81.48666">
+     <time>TP02014-09-24T14:55:37Z65</time>
+     </wpt>
+     <wpt lat="41.26049" lon="-81.48655">
+     <time>TP2014-09-24T14:55:37Z066</time>
+     </wpt>
+     <wpt lat="41.26052" lon="-81.48639">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26056" lon="-81.48622">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.2606" lon="-81.48611">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26063" lon="-81.48601">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26065" lon="-81.48594">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26069" lon="-81.48584">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26073" lon="-81.48574">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.26074" lon="-81.48573">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     <wpt lat="41.260738" lon="-81.4857254">
+     <time>2014-09-24T14:55:37Z</time>
+     </wpt>
+     -->
+</gpx>

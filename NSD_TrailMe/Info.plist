@@ -39,5 +39,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Trail Me needs access to your location to track your activity</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Trail Me needs access to your location to track your activity</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Trail Me needs access to your photo library to set your profile image</string>
 </dict>
 </plist>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="activityCell" id="gTV-IL-0wX" customClass="ActivityCollectionViewCell" customModule="TrailMe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tmB-6U-dM2" customClass="CustomImageView" customModule="TrailMe" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="tmB-6U-dM2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2wM-AK-sAz"/>
+                <constraint firstAttribute="trailing" secondItem="tmB-6U-dM2" secondAttribute="trailing" id="I61-cY-fSR"/>
+                <constraint firstItem="tmB-6U-dM2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JQY-Lu-wj8"/>
+                <constraint firstAttribute="bottom" secondItem="tmB-6U-dM2" secondAttribute="bottom" id="wKS-N1-zei"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="149" height="100"/>
+            <connections>
+                <outlet property="activityMapImageView" destination="tmB-6U-dM2" id="7f9-Zd-fvB"/>
+            </connections>
+            <point key="canvasLocation" x="216.80000000000001" y="131.33433283358323"/>
+        </collectionViewCell>
+    </objects>
+</document>

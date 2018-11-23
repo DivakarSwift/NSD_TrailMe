@@ -44,13 +44,12 @@ class MoreController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            break
-//            let storyboard = UIStoryboard(name: "Alternate", bundle: nil)
-//            if let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as?
-//                ProfileViewController
-//            {
-//                navigationController?.pushViewController(profileViewController, animated: true)
-//            }
+            let storyboard = UIStoryboard(name: "Alternate", bundle: nil)
+            if let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as?
+                ProfileViewController
+            {
+                navigationController?.pushViewController(profileViewController, animated: true)
+            }
         case 1:
             break
 //            let storyboard = UIStoryboard(name: "Statistic", bundle: nil)

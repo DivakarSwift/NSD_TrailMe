@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController {
     var validUserName = false
     var validPassword = false
     var validEmail = false
+    var activeField: UITextField?
     
     // Text Fields Controllers
     let emailTextFieldController: MDCTextInputControllerOutlined
@@ -43,7 +44,7 @@ class SignUpViewController: UIViewController {
     
     let headerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 37)
+        label.font = UIFont.systemFont(ofSize: 28)
         label.textColor = .white
         label.text = "Ready to Move?"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +57,7 @@ class SignUpViewController: UIViewController {
         label.textColor = .white
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.text = "Sign up for an account so you can get moving today!"
+        label.text = "Sign up to get moving today!"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -202,6 +203,7 @@ class SignUpViewController: UIViewController {
         
         scrollView.backgroundColor = .clear
         
+        
         validPassword = false
         validEmail = false
         validUserName = false
@@ -209,6 +211,29 @@ class SignUpViewController: UIViewController {
         validFirstName = false
         validLastName = false
         setupUI()
+        registerForKeyboardNotifications()
+    }
+    
+     func registerForKeyboardNotifications () {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWasShown(notification: Notification){
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return}
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        var aRect = activeField?.superview?.frame
+        aRect?.size.height += keyboardSize.height
+        activeField?.superview?.frame = aRect!
+        scrollView.setContentOffset(CGPoint(x: 0, y: (activeField?.frame.origin.y)!-keyboardSize.height), animated: true)
+    }
+    
+    @objc func keyboardWillBeHidden(notification: Notification){
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
     }
     
     fileprivate func setupUI() {
@@ -263,7 +288,7 @@ class SignUpViewController: UIViewController {
                                               toItem: scrollView.contentLayoutGuide,
                                               attribute: .top,
                                               multiplier: 1,
-                                              constant: 88))
+                                              constant: 30))
         constraints.append(NSLayoutConstraint(item: headerLabel,
                                               attribute: .centerX,
                                               relatedBy: .equal,
@@ -277,7 +302,7 @@ class SignUpViewController: UIViewController {
                                               toItem: headerLabel,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 8))
+                                              constant: 4))
         constraints.append(NSLayoutConstraint(item: ctaLabel,
                                               attribute: .centerX,
                                               relatedBy: .equal,
@@ -291,7 +316,7 @@ class SignUpViewController: UIViewController {
                                               toItem: ctaLabel,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 16))
+                                              constant: 8))
         constraints.append(NSLayoutConstraint(item: firstNameTextField,
                                               attribute: .centerX,
                                               relatedBy: .equal,
@@ -553,6 +578,7 @@ class SignUpViewController: UIViewController {
         }
         
     }
+
 }
 
 // MARK: - UITextFieldDelegate
@@ -602,6 +628,14 @@ extension SignUpViewController: UITextFieldDelegate {
             validUserName = true
         }
         return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeField = nil
     }
 }
 

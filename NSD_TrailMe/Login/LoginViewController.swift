@@ -336,6 +336,7 @@ class LoginViewController: UIViewController {
                 }
                 guard let uid = result?.user.uid else { return }
                 print("Successfully logged in user with \(uid)")
+                
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
                 tabBarController.setupViewControllers()
                 self.dismiss(animated: true, completion: nil)
@@ -351,6 +352,47 @@ class LoginViewController: UIViewController {
     @objc func handleDontHaveAccount() {
         let signUpController = SignUpViewController()
         navigationController?.pushViewController(signUpController, animated: true)
+    }
+    
+    func loadTestDataIntoCoreDataAndFirebase(_ values: [[String: Any]]) {
+        UserDefaults.standard.set(true, forKey: "firstTimeRun")
+        values.forEach { (dictionary) in
+            let newActivity = Activity(context: CoreDataStack.context)
+            if let distance = dictionary["distance"] as? Double,
+                let duration = dictionary["duration"] as? Int16,
+                let category = dictionary["category"] as? String,
+                let date = dictionary["date"] as? Date {
+                newActivity.distance = distance
+                newActivity.duration = duration
+                newActivity.category = category
+                newActivity.timestamp = date
+                
+                CoreDataStack.saveContext()
+                
+                let frmtDate = FormatDisplay.date(date)
+                let frmtDistance = FormatDisplay.distance(distance)
+                let frmtTime = FormatDisplay.time(Int(duration))
+                let inputDistance = Measurement(value: distance, unit: UnitLength.meters)
+                let frmtPace = FormatDisplay.pace(distance: inputDistance, seconds: Int(duration), outputUnit: .minutesPerMile)
+                
+                let userPostReference = Database.database().reference().child("posts").child("c1AhZqpoB2NVaK7u10lRe8rWVB23")
+                let reference = userPostReference.childByAutoId()
+                let values = ["imageUrl" : "https://firebasestorage.googleapis.com/v0/b/nsd-trailme.appspot.com/o/map_images%2F4EE5F021-7932-4251-97F0-822BED7106C9?alt=media&token=e5936e74-5d28-4524-93c8-6c5fe47a53f1",
+                              "category":category,
+                              "date":frmtDate,
+                              "duration":frmtTime,
+                              "distance":frmtDistance,
+                              "pace":frmtPace,
+                              "creationDate":ServerValue.timestamp()] as [String : Any]
+                reference.updateChildValues(values) { (error, ref) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                        return
+                    }
+                }
+            }
+        }
+        
     }
     
     @objc func textEditingChangedEmail(_ textField: MDCTextField){
