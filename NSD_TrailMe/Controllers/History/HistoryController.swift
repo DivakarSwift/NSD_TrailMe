@@ -13,10 +13,26 @@ import CoreLocation
 import Firebase
 
 
-class HistoryController: UITableViewController {
+class HistoryController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     let cellId = "cellId"
-    var activities = [Activity]()
+
+    lazy var fetchedResultsController: NSFetchedResultsController<Activity> = {
+        let context = CoreDataStack.context
+        let uid = Auth.auth().currentUser?.uid
+        let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
+        fetchRequest.predicate = NSPredicate(format: "userid = %@", uid!)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        return frc
+    }()
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        if type == .insert {
+           tableView.insertRows(at: [newIndexPath!], with:.none)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +40,35 @@ class HistoryController: UITableViewController {
         title = "History"
         navigationController?.navigationBar.prefersLargeTitles = false
         tableView.register(HistoryCell.self, forCellReuseIdentifier: cellId)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getActivities()
+        do{
+            try fetchedResultsController.performFetch()
+        }catch let err {
+            print(err)
+        }
+        //tableView.reloadData()
     }
-    
+   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        if let count = fetchedResultsController.sections?[0].numberOfObjects {
+            return count
+        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HistoryCell
-        let formattedDate = FormatDisplay.date(activities[indexPath.row].timestamp)
-        let timeString = activities[indexPath.row].timestamp?.getTimeString()
-        cell.categoryLabel.text = activities[indexPath.row].category
+        let activity = fetchedResultsController.object(at: indexPath)
+        let formattedDate = FormatDisplay.date(activity.timestamp)
+        let timeString = activity.timestamp?.getTimeString()
+        cell.categoryLabel.text = activity.category
         cell.dateLabel.text = formattedDate
         cell.timeLabel.text = timeString
-        if activities[indexPath.row].shared == true {
+        if activity.shared == true {
             cell.sharedLabel.text = "Shared"
         }
         
@@ -51,24 +77,9 @@ class HistoryController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = HistoryDetailController()
-        destination.activity = activities[indexPath.row]
+        destination.activity = fetchedResultsController.object(at: indexPath)
         present(destination, animated: true, completion: nil)
     }
-    
-    fileprivate func getActivities() {
-        if let uid = Auth.auth().currentUser?.uid {
-        let context = CoreDataStack.context
-        let fetchRequest = NSFetchRequest<Activity>(entityName: "Activity")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        fetchRequest.predicate = NSPredicate(format: "userid = %@", uid)
-        do {
-            activities = try context.fetch(fetchRequest)
-        }catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    }
-    
 }
 
 extension HistoryController: MKMapViewDelegate {
