@@ -336,6 +336,15 @@ class LoginViewController: UIViewController {
                 }
                 guard let uid = result?.user.uid else { return }
                 print("Successfully logged in user with \(uid)")
+                // loads test data for test user
+                if uid == "87yZlX1J60ZQ9U9mPv1C0hTn1lj2"{
+                    if UserDefaults.standard.bool(forKey: "firstTimeRun") == false {
+                        self.loadTestDataIntoCoreDataAndFirebase(testData)
+                        print("Loaded test data")
+                    } else {
+                        print("Data already loaded")
+                    }
+                }
                 
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? TabBarController else { return }
                 tabBarController.setupViewControllers()
@@ -375,9 +384,9 @@ class LoginViewController: UIViewController {
                 let inputDistance = Measurement(value: distance, unit: UnitLength.meters)
                 let frmtPace = FormatDisplay.pace(distance: inputDistance, seconds: Int(duration), outputUnit: .minutesPerMile)
                 
-                let userPostReference = Database.database().reference().child("posts").child("c1AhZqpoB2NVaK7u10lRe8rWVB23")
+                let userPostReference = Database.database().reference().child("posts").child("87yZlX1J60ZQ9U9mPv1C0hTn1lj2")
                 let reference = userPostReference.childByAutoId()
-                let values = ["imageUrl" : "https://firebasestorage.googleapis.com/v0/b/nsd-trailme.appspot.com/o/map_images%2F4EE5F021-7932-4251-97F0-822BED7106C9?alt=media&token=e5936e74-5d28-4524-93c8-6c5fe47a53f1",
+                let values = ["imageUrl" : "https://firebasestorage.googleapis.com/v0/b/my-final-project-fa8d5.appspot.com/o/map_images%2FEC0BBFAA-0AC4-41FA-A6B5-91A49418F4FC?alt=media&token=a566ccf7-309c-485a-a30f-a63ea050248a",
                               "category":category,
                               "date":frmtDate,
                               "duration":frmtTime,

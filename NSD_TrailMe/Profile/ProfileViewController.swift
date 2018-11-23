@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
         if collectionView == followCollectionView {
             let followCell = collectionView.dequeueReusableCell(withReuseIdentifier: followCellId, for: indexPath) as! FollowCollectionViewCell
-            followCell.profileImageView.layer.cornerRadius = 90 / 2
+            followCell.profileImageView.layer.cornerRadius = 50 / 2
             followCell.profileImageView.layer.masksToBounds = true
             followCell.user = users[indexPath.row]
             return followCell
@@ -118,9 +118,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: 0, height: 0)
         if collectionView == followCollectionView {
-            size = CGSize(width: 90, height: 90)
+            size = CGSize(width: 50, height: 50)
         } else if collectionView == activityCollectionView {
-            size = CGSize(width: 150, height: 100)
+            size = CGSize(width: 90, height: 60)
         }
         return size
     }

@@ -91,28 +91,6 @@ class ActivityDetailViewController: UIViewController {
         return iv
     }()
     
-    let shareButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Share", for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.gray.cgColor
-        button.addTarget(self, action: #selector(handleShare), for: .touchUpInside)
-        return button
-    }()
-    
-    let addNoteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Add Note", for: .normal)
-        button.addTarget(self, action: #selector(handleAddNote), for: .touchUpInside)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.gray.cgColor
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        return button
-    }()
-    
     let noteTextView: UITextView = {
         let tv = UITextView()
         tv.backgroundColor = backColor
@@ -125,7 +103,9 @@ class ActivityDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = backColor
         navigationItem.title = "Details"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleShare))
+        let noteButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleAddNote))
+        navigationItem.rightBarButtonItems = [shareButton, noteButton]
         mapView.delegate = self
         setupViews()
         configureView()
@@ -196,35 +176,32 @@ class ActivityDetailViewController: UIViewController {
         view.addSubview(activityIndicator)
         view.addSubview(staticMapImageView)
         view.addSubview(noteTextView)
-        view.addSubview(addNoteButton)
+       
         
         activityIndicator.color = mainColor
         mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 92, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: height / 4)
         
-        categoryLabel.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
+        categoryLabel.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         categoryTitleLabel.anchor(top: categoryLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 6, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         
-        dateLabel.anchor(top: categoryTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
+        dateLabel.anchor(top: categoryTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
         dateTitleLabel.anchor(top: dateLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 6, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         
-        distanceLabel.anchor(top: dateTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
+        distanceLabel.anchor(top: dateTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
         distanceTitleLabel.anchor(top: distanceLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 6, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         
-        durationLabel.anchor(top: distanceTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
+        durationLabel.anchor(top: distanceTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
         durationTitleLabel.anchor(top: durationLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 6, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         
-        paceLabel.anchor(top: durationTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
+        paceLabel.anchor(top: durationTitleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 20)
         paceTitleLabel.anchor(top: paceLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 6, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 80, height: 20)
         
-        activityIndicator.anchor(top: paceTitleLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        activityIndicator.anchor(top: paceTitleLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 25)
         
-        addNoteButton.anchor(top: noteTextView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 44)
-        addNoteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        staticMapImageView.anchor(top: addNoteButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 200)
+        staticMapImageView.anchor(top: activityIndicator.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 100)
         staticMapImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         
@@ -326,7 +303,7 @@ class ActivityDetailViewController: UIViewController {
         guard let region = mapRegion() else { return }
         mapSnapShotOptions.region = region
         mapSnapShotOptions.scale = UIScreen.main.scale
-        mapSnapShotOptions.size = CGSize(width: 300, height: 200)
+        mapSnapShotOptions.size = CGSize(width: 200, height: 100)
         mapSnapShotOptions.showsPointsOfInterest = false
         mapSnapShotOptions.showsBuildings = false
         
