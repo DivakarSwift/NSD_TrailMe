@@ -127,6 +127,8 @@ class ActivityDetailViewController: UIViewController {
     fileprivate func displayNote () {
         if let noteText = ActivityDetailViewController.note {
             noteTextView.text = noteText
+            activity.note = noteText
+            CoreDataStack.saveContext()
         }
     }
     fileprivate func saveToDatabase(with imageUrl: String){
@@ -199,9 +201,9 @@ class ActivityDetailViewController: UIViewController {
         activityIndicator.anchor(top: paceTitleLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 25)
+        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
         
-        staticMapImageView.anchor(top: activityIndicator.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 100)
+        staticMapImageView.anchor(top: noteTextView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 100)
         staticMapImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         

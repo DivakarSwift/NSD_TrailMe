@@ -134,17 +134,18 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
         if loggedInUserId == userId {
             self.setEditStyle()
+        }else if(user?.isPublic == false){
+            self.setPrivateStyle()
         } else {
-            Database.database().reference().child("follows").child(loggedInUserId).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let isFollowed = snapshot.value as? Int, isFollowed == 1 {
-                    self.setFollowStyle()
-                } else {
-                    self.setUnfollowStyle()
-                }
-            }) { (error) in
-                print(error.localizedDescription)
-            }
-
+                Database.database().reference().child("follows").child(loggedInUserId).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let isFollowed = snapshot.value as? Int, isFollowed == 1 {
+                            self.setFollowStyle()
+                        } else {
+                            self.setUnfollowStyle()
+                        }
+                    }) { (error) in
+                        print(error.localizedDescription)
+                    }
         }
     }
 
@@ -192,6 +193,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                     self.getFollowingCount(id: uid)
                 })
             }
+        case "Account is Private":
+            let alert = UIAlertController(title: "Account is private", message: "This is a private account. Once account user makes account public, you will be able to follow them.", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         default:
             editProfile()
         }
@@ -223,6 +228,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         editProfileButton.backgroundColor = .white
         editProfileButton.setTitleColor(mainColor, for: .normal)
     }
+    
+    fileprivate func setPrivateStyle() {
+        editProfileButton.setTitle("Account is Private", for: .normal)
+        editProfileButton.layer.borderColor = UIColor.red.cgColor
+        editProfileButton.backgroundColor = .white
+        editProfileButton.setTitleColor(.red, for: .normal)
+    }
 
     fileprivate func fetchUser()  {
         let uid = id ?? Auth.auth().currentUser?.uid ?? ""
@@ -237,7 +249,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             self.getFollowerCount(id: uid)
             self.getFollowingCount(id: uid)
             Database.fetchUserWithUID(uid: uid) { (user) in
+                if user.isPublic == true{
                 self.fetchPostsWith(user: user)
+                }
             }
              self.followCollectionView.reloadData()
         }) { (error) in

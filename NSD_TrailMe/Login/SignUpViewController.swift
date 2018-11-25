@@ -569,8 +569,8 @@ class SignUpViewController: UIViewController {
                             print(error.localizedDescription)
                         } else {
                             guard let profileImageUrl = url?.absoluteString else { return }
-                            //guard let fcmToken = Messaging.messaging().fcmToken else { return }
-                            let dictionaryValues: [String:Any] = ["firstName": firstName, "lastName": lastName, "userName": username, "email": email, "isPublic": self.isPublic,"profileImageUrl":profileImageUrl]
+                            guard let fcmToken = Messaging.messaging().fcmToken else { return }
+                            let dictionaryValues: [String:Any] = ["firstName": firstName, "lastName": lastName, "userName": username, "email": email, "isPublic": self.isPublic,"profileImageUrl":profileImageUrl,"fcmToken":fcmToken]
                             let values = [uid:dictionaryValues]
                             Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
                                 if let err = error {

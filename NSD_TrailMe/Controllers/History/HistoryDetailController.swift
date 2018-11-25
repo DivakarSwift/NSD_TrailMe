@@ -18,6 +18,11 @@ class HistoryDetailController: UIViewController {
         return map
     }()
     
+    let noteView: UITextView = {
+        let tv = UITextView()
+        return tv
+    }()
+    
     let doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Done", for: .normal)
@@ -36,16 +41,26 @@ class HistoryDetailController: UIViewController {
         mapView.delegate = self
         setupUI()
         loadMap()
+        loadNote()
+    }
+    
+    fileprivate func loadNote() {
+        guard let noteText = activity.note else { return }
+        noteView.text = "NOTE:\n\(noteText)"
     }
     
     fileprivate func setupUI() {
         let height = view.frame.height
         view.addSubview(mapView)
+        view.addSubview(noteView)
         view.addSubview(doneButton)
         
         mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 88, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: height / 4)
         
-        doneButton.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+        noteView.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+        
+        
+        doneButton.anchor(top: noteView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
     }
     
     

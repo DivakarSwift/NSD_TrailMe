@@ -183,7 +183,7 @@ class ActivityController: UIViewController {
     }
     
     fileprivate func zoomToLocation(with coordinate: CLLocationCoordinate2D){
-        let zoomRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let zoomRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         mapView.setRegion(zoomRegion, animated: true)
     }
     

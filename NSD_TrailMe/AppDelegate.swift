@@ -9,9 +9,12 @@
 import UIKit
 import CoreData
 import Firebase
+import UserNotifications
+
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
     
@@ -28,11 +31,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.rgb(red: 0, green: 71, blue: 255)
         UITabBar.appearance().barTintColor = .white
         
+        Messaging.messaging().delegate = self
+        
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, _) in
+                
+            }
+            
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        application.registerForRemoteNotifications()
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error{
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+            }
+        }
         
         return true
     }
     
+   
     
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Registered with FCM with token: \(fcmToken)")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+   
     
     func applicationDidEnterBackground(_ application: UIApplication) {
        CoreDataStack.saveContext()

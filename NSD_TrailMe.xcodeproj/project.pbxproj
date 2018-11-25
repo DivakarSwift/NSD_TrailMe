@@ -14,6 +14,7 @@
 		3C56D20521A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D20321A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld */; };
 		3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20621A3BB73008AFD3B /* Assets.xcassets */; };
 		3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */; };
+		3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */; };
 		3C6E3A8E21A441EA00FBA0D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */; };
 		3CC3C02221A7293100AB86E0 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02121A7293100AB86E0 /* Formatter.swift */; };
 		3CC3C02421A7297500AB86E0 /* UnitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02321A7297500AB86E0 /* UnitExtension.swift */; };
@@ -66,6 +67,7 @@
 		3C56D20621A3BB73008AFD3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C56D20921A3BB73008AFD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C56D20B21A3BB73008AFD3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GrandWaileaWalk.gpx; sourceTree = "<group>"; };
 		3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3CC3C02121A7293100AB86E0 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		3CC3C02321A7297500AB86E0 /* UnitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtension.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		3CC3C05F21A7BBB800AB86E0 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		3CC3C06221A7BCD300AB86E0 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		3CC3C06B21A7BD7A00AB86E0 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		3CC66C8C21A8EF3B00A332C4 /* NSD_TrailMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSD_TrailMe.entitlements; sourceTree = "<group>"; };
 		3CF1B90421A49133003EA849 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3CF1B90621A4957C003EA849 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3CF1B90821A49D0E003EA849 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 		3C56D1FB21A3BB72008AFD3B /* NSD_TrailMe */ = {
 			isa = PBXGroup;
 			children = (
+				3CC66C8C21A8EF3B00A332C4 /* NSD_TrailMe.entitlements */,
 				3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */,
 				3CC3C02721A729CB00AB86E0 /* LocationManager.swift */,
 				3CC3C02921A729DD00AB86E0 /* CoreDataStack.swift */,
@@ -169,6 +173,7 @@
 				3C56D20B21A3BB73008AFD3B /* Info.plist */,
 				3CF1B90421A49133003EA849 /* GoogleService-Info.plist */,
 				3C56D20321A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld */,
+				3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */,
 				3CC3C02D21A731E400AB86E0 /* WaltersRoadLocation.gpx */,
 			);
 			path = NSD_TrailMe;
@@ -338,6 +343,11 @@
 				TargetAttributes = {
 					3C56D1F821A3BB72008AFD3B = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -367,6 +377,7 @@
 				3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */,
 				3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */,
 				3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */,
+				3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */,
 				3CC3C03521A7B47200AB86E0 /* Alternate.storyboard in Resources */,
 				3CC3C03C21A7B4BE00AB86E0 /* ActivityCollectionViewCell.xib in Resources */,
 				3CC3C04021A7B4BE00AB86E0 /* FollowCollectionViewCell.xib in Resources */,
@@ -626,6 +637,7 @@
 			baseConfigurationReference = 91C2A6A1BBFE0D907033E703 /* Pods-NSD_TrailMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NSD_TrailMe/NSD_TrailMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HQ48KTK52;
 				INFOPLIST_FILE = NSD_TrailMe/Info.plist;
@@ -645,6 +657,7 @@
 			baseConfigurationReference = FD3FDB960610E40915217944 /* Pods-NSD_TrailMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NSD_TrailMe/NSD_TrailMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HQ48KTK52;
 				INFOPLIST_FILE = NSD_TrailMe/Info.plist;
