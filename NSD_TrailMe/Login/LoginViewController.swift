@@ -337,7 +337,7 @@ class LoginViewController: UIViewController {
                 guard let uid = result?.user.uid else { return }
                 print("Successfully logged in user with \(uid)")
                 // loads test data for test user
-                if uid == "87yZlX1J60ZQ9U9mPv1C0hTn1lj2"{
+                if uid == "Y1MzcwjsbNPuH23a04AZeWXtxw62"{
                     if UserDefaults.standard.bool(forKey: "firstTimeRun") == false {
                         self.loadTestDataIntoCoreDataAndFirebase(testData)
                         print("Loaded test data")
@@ -370,11 +370,15 @@ class LoginViewController: UIViewController {
             if let distance = dictionary["distance"] as? Double,
                 let duration = dictionary["duration"] as? Int16,
                 let category = dictionary["category"] as? String,
-                let date = dictionary["date"] as? Date {
+                let date = dictionary["date"] as? Date,
+                let shared = dictionary["shared"] as? Bool{
                 newActivity.distance = distance
                 newActivity.duration = duration
                 newActivity.category = category
                 newActivity.timestamp = date
+                newActivity.shared = shared
+                newActivity.userid = "Y1MzcwjsbNPuH23a04AZeWXtxw62"
+                
                 
                 CoreDataStack.saveContext()
                 
@@ -384,7 +388,7 @@ class LoginViewController: UIViewController {
                 let inputDistance = Measurement(value: distance, unit: UnitLength.meters)
                 let frmtPace = FormatDisplay.pace(distance: inputDistance, seconds: Int(duration), outputUnit: .minutesPerMile)
                 
-                let userPostReference = Database.database().reference().child("posts").child("87yZlX1J60ZQ9U9mPv1C0hTn1lj2")
+                let userPostReference = Database.database().reference().child("posts").child("Y1MzcwjsbNPuH23a04AZeWXtxw62")
                 let reference = userPostReference.childByAutoId()
                 let values = ["imageUrl" : "https://firebasestorage.googleapis.com/v0/b/my-final-project-fa8d5.appspot.com/o/map_images%2FEC0BBFAA-0AC4-41FA-A6B5-91A49418F4FC?alt=media&token=a566ccf7-309c-485a-a30f-a63ea050248a",
                               "category":category,

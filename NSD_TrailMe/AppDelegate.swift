@@ -67,6 +67,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        
+        if let followerId = userInfo["followerId"] as? String {
+            let storyboard = UIStoryboard(name: "Alternate", bundle: nil)
+            if let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as?
+                ProfileViewController
+            {
+                profileViewController.id = followerId
+                if let mainTabBarController = window?.rootViewController as? TabBarController {
+                    mainTabBarController.selectedIndex = 0
+                    if let homeNavController = mainTabBarController.viewControllers?.first as? UINavigationController {
+                        homeNavController.pushViewController(profileViewController, animated: true)
+                    }
+                }
+            }
+        }
+    }
    
     
     func applicationDidEnterBackground(_ application: UIApplication) {

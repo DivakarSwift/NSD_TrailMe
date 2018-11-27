@@ -22,23 +22,14 @@ class HistoryDetailController: UIViewController {
         let tv = UITextView()
         return tv
     }()
-    
-    let doneButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Done", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.gray.cgColor
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
-        return button
-    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         mapView.delegate = self
+        title = "Detail"
+        navigationController?.navigationBar.prefersLargeTitles = false
         setupUI()
         loadMap()
         loadNote()
@@ -53,19 +44,12 @@ class HistoryDetailController: UIViewController {
         let height = view.frame.height
         view.addSubview(mapView)
         view.addSubview(noteView)
-        view.addSubview(doneButton)
         
-        mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 88, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: height / 4)
+        
+        mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 98, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: height / 2)
         
         noteView.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
         
-        
-        doneButton.anchor(top: noteView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 32, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
-    }
-    
-    
-    @objc func handleDone() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     fileprivate func mapRegion() -> MKCoordinateRegion? {

@@ -334,6 +334,9 @@ class ActivityDetailViewController: UIViewController {
                         // store post To Firebase Database
                         self.saveToDatabase(with: imageUrl)
                         
+                        let mainTabBarController = TabBarController()
+                        mainTabBarController.selectedIndex = 0
+                        mainTabBarController.presentedViewController?.dismiss(animated: true, completion: nil)
                         self.navigationController?.popViewController(animated: true)
                         NotificationCenter.default.post(name: ActivityDetailViewController.updateFeedNotificationName, object: nil)
                     }
