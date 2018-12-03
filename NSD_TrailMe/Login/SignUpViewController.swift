@@ -22,6 +22,8 @@ class SignUpViewController: UIViewController {
     var validEmail = false
     var activeField: UITextField?
     let activityIndicator = UIActivityIndicatorView()
+    let notificationCenter = NotificationCenter.default
+    
     
     // Text Fields Controllers
     let emailTextFieldController: MDCTextInputControllerOutlined
@@ -94,6 +96,8 @@ class SignUpViewController: UIViewController {
         tf.autocapitalizationType = .words
         tf.clearButtonMode = .always
         tf.textColor = .white
+        tf.returnKeyType = .next
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedFirstname(_:)), for: .editingChanged)
         return tf
@@ -104,6 +108,8 @@ class SignUpViewController: UIViewController {
         tf.autocapitalizationType = .words
         tf.clearButtonMode = .always
         tf.textColor = .white
+        tf.returnKeyType = .next
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedLastname(_:)), for: .editingChanged)
         return tf
@@ -114,6 +120,8 @@ class SignUpViewController: UIViewController {
         tf.autocapitalizationType = .none
         tf.clearButtonMode = .always
         tf.textColor = .white
+        tf.returnKeyType = .next
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedUsername(_:)), for: .editingChanged)
         return tf
@@ -125,6 +133,8 @@ class SignUpViewController: UIViewController {
         tf.autocapitalizationType = .none
         tf.textColor = .white
         tf.clearButtonMode = .always
+        tf.returnKeyType = .next
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedEmail(_:)), for: .editingChanged)
         return tf
@@ -135,6 +145,7 @@ class SignUpViewController: UIViewController {
         tf.isSecureTextEntry = true
         tf.textColor = .white
         tf.clearButtonMode = .always
+        tf.returnKeyType = .done
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedPassword(_:)), for: .editingChanged)
         return tf
@@ -213,7 +224,11 @@ class SignUpViewController: UIViewController {
         validLastName = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
-        registerForKeyboardNotifications()
+        
+    
+        if UIScreen.main.bounds.size.height < 736 {
+            registerForKeyboardNotifications()
+        }
     }
     
      func registerForKeyboardNotifications () {
@@ -231,7 +246,7 @@ class SignUpViewController: UIViewController {
         activeField?.superview?.frame = aRect!
         scrollView.setContentOffset(CGPoint(x: 0, y: (activeField?.frame.origin.y)!-keyboardSize.height), animated: true)
     }
-    
+
     @objc func keyboardWillBeHidden(notification: Notification){
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
@@ -600,46 +615,55 @@ extension SignUpViewController: UITextFieldDelegate {
     
     // Add basic password field validation in the textFieldShouldReturn delegate function
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        if (textField == passwordTextField && passwordTextField.text != nil && passwordTextField.text!.count < 6) {
-            passwordTextFieldController.setErrorText("Password must be at least 6 characters", errorAccessibilityValue: nil)
-            validPassword = false
-        } else {
-            passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validPassword = true
+        switch textField {
+        case firstNameTextField:
+            if (firstNameTextField.text != nil && firstNameTextField.text!.count < 3){
+                firstnameTextFieldController.setErrorText("Firstname must be at least 3 characters", errorAccessibilityValue: nil)
+                validFirstName = false
+            } else {
+                firstnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                validFirstName = true
+                lastNameTextField.becomeFirstResponder()
+            }
+        case lastNameTextField:
+            if (lastNameTextField.text != nil && lastNameTextField.text!.count < 3){
+                lastnameTextFieldController.setErrorText("Lastname must be at least 3 characters", errorAccessibilityValue: nil)
+                validLastName = false
+            } else {
+                lastnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                validLastName = true
+                usernameTextField.becomeFirstResponder()
+            }
+        case usernameTextField:
+            if (usernameTextField.text != nil && usernameTextField.text!.count < 3){
+                usernameTextFieldController.setErrorText("Username must be at least 3 characters", errorAccessibilityValue: nil)
+                validUserName = false
+            } else {
+                usernameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                validUserName = true
+                view.endEditing(true)
+                emailTextField.becomeFirstResponder()
         }
-        
-        if (textField == emailTextField && emailTextField.text != nil && !isEmailValid(email: emailTextField.text!)) {
-            emailTextFieldController.setErrorText("Must enter a valid email", errorAccessibilityValue: nil)
-            validEmail = false
-        } else {
-            emailTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validEmail = true
+        case emailTextField:
+            if (emailTextField.text != nil && !isEmailValid(email: emailTextField.text!)) {
+                emailTextFieldController.setErrorText("Must enter a valid email", errorAccessibilityValue: nil)
+                validEmail = false
+            } else {
+                emailTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                validEmail = true
+                passwordTextField.becomeFirstResponder()
         }
-        
-        if (textField == firstNameTextField && firstNameTextField.text != nil && firstNameTextField.text!.count < 3){
-            firstnameTextFieldController.setErrorText("Firstname must be at least 3 characters", errorAccessibilityValue: nil)
-            validFirstName = false
-        } else {
-            firstnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validFirstName = true
-        }
-        
-        if (textField == lastNameTextField && lastNameTextField.text != nil && lastNameTextField.text!.count < 3){
-            lastnameTextFieldController.setErrorText("Lastname must be at least 3 characters", errorAccessibilityValue: nil)
-            validLastName = false
-        } else {
-            lastnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validLastName = true
-        }
-        
-        if (textField == usernameTextField && usernameTextField.text != nil && usernameTextField.text!.count < 3){
-            usernameTextFieldController.setErrorText("Username must be at least 3 characters", errorAccessibilityValue: nil)
-            validUserName = false
-        } else {
-            usernameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validUserName = true
+        case passwordTextField:
+           if (passwordTextField.text != nil && passwordTextField.text!.count < 6) {
+                    passwordTextFieldController.setErrorText("Password must be at least 6 characters", errorAccessibilityValue: nil)
+                    validPassword = false
+                } else {
+                    passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                    validPassword = true
+                    textField.resignFirstResponder()
+                }
+        default:
+            textField.resignFirstResponder()
         }
         return false
     }
@@ -647,7 +671,7 @@ extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeField = textField
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeField = nil
     }
