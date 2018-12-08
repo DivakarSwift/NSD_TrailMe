@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1E92BA1D9B2B8BBA49DFE294 /* Pods_NSD_TrailMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5DA3AF2EE539015C345281 /* Pods_NSD_TrailMe.framework */; };
+		3C26262221BC512700579B77 /* Statistic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C26262121BC512700579B77 /* Statistic.storyboard */; };
+		3C26262421BC51AC00579B77 /* RunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262321BC51AC00579B77 /* RunTableViewController.swift */; };
+		3C26262621BC51B700579B77 /* WalkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262521BC51B700579B77 /* WalkTableViewController.swift */; };
+		3C26262821BC51C600579B77 /* CycleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262721BC51C600579B77 /* CycleTableViewController.swift */; };
+		3C26262A21BC51D400579B77 /* StatsRootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262921BC51D400579B77 /* StatsRootPageViewController.swift */; };
 		3C40EC5B21A46A4400913C8E /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40EC5A21A46A4400913C8E /* ResetPasswordController.swift */; };
 		3C56D1FD21A3BB72008AFD3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */; };
 		3C56D1FF21A3BB72008AFD3B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C56D1FE21A3BB72008AFD3B /* LoginViewController.swift */; };
@@ -59,6 +64,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C26262121BC512700579B77 /* Statistic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistic.storyboard; sourceTree = "<group>"; };
+		3C26262321BC51AC00579B77 /* RunTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTableViewController.swift; sourceTree = "<group>"; };
+		3C26262521BC51B700579B77 /* WalkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTableViewController.swift; sourceTree = "<group>"; };
+		3C26262721BC51C600579B77 /* CycleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleTableViewController.swift; sourceTree = "<group>"; };
+		3C26262921BC51D400579B77 /* StatsRootPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsRootPageViewController.swift; sourceTree = "<group>"; };
 		3C40EC5A21A46A4400913C8E /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		3C56D1F921A3BB72008AFD3B /* NSD_TrailMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSD_TrailMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C56D1FC21A3BB72008AFD3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -244,9 +254,14 @@
 		3CC3C06C21A7BD9D00AB86E0 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				3C26262121BC512700579B77 /* Statistic.storyboard */,
 				3CF1B91321A4FFF1003EA849 /* MoreController.swift */,
 				3CF1B91921A50805003EA849 /* AboutController.swift */,
 				3CF1B91B21A50822003EA849 /* StatsController.swift */,
+				3C26262921BC51D400579B77 /* StatsRootPageViewController.swift */,
+				3C26262721BC51C600579B77 /* CycleTableViewController.swift */,
+				3C26262321BC51AC00579B77 /* RunTableViewController.swift */,
+				3C26262521BC51B700579B77 /* WalkTableViewController.swift */,
 				3CF1B91721A507B9003EA849 /* MoreTableViewCell.swift */,
 			);
 			path = More;
@@ -377,6 +392,7 @@
 				3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */,
 				3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */,
 				3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */,
+				3C26262221BC512700579B77 /* Statistic.storyboard in Resources */,
 				3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */,
 				3CC3C03521A7B47200AB86E0 /* Alternate.storyboard in Resources */,
 				3CC3C03C21A7B4BE00AB86E0 /* ActivityCollectionViewCell.xib in Resources */,
@@ -461,6 +477,7 @@
 				3CC3C04F21A7B7F600AB86E0 /* EditProfileTableViewHeader.swift in Sources */,
 				3CC3C02C21A730FF00AB86E0 /* ActivityDetailViewController.swift in Sources */,
 				3CC3C03321A79F1800AB86E0 /* HistoryDetailController.swift in Sources */,
+				3C26262421BC51AC00579B77 /* RunTableViewController.swift in Sources */,
 				3CC3C02A21A729DD00AB86E0 /* CoreDataStack.swift in Sources */,
 				3CC3C03D21A7B4BE00AB86E0 /* FollowCollectionViewCell.swift in Sources */,
 				3CF1B90721A4957C003EA849 /* SignUpViewController.swift in Sources */,
@@ -476,14 +493,17 @@
 				3C56D1FF21A3BB72008AFD3B /* LoginViewController.swift in Sources */,
 				3CF1B91821A507B9003EA849 /* MoreTableViewCell.swift in Sources */,
 				3CC3C03F21A7B4BE00AB86E0 /* ActivityViewController.swift in Sources */,
+				3C26262621BC51B700579B77 /* WalkTableViewController.swift in Sources */,
 				3C56D20521A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld in Sources */,
 				3CC3C07121A7C11A00AB86E0 /* SearchController.swift in Sources */,
 				3CC3C04121A7B4BE00AB86E0 /* ProfileViewController.swift in Sources */,
+				3C26262A21BC51D400579B77 /* StatsRootPageViewController.swift in Sources */,
 				3CC3C05021A7B7F600AB86E0 /* EditProfileController.swift in Sources */,
 				3CF1B91621A501EC003EA849 /* HistoryController.swift in Sources */,
 				3CF1B90921A49D0E003EA849 /* CheckBox.swift in Sources */,
 				3C56D1FD21A3BB72008AFD3B /* AppDelegate.swift in Sources */,
 				3C40EC5B21A46A4400913C8E /* ResetPasswordController.swift in Sources */,
+				3C26262821BC51C600579B77 /* CycleTableViewController.swift in Sources */,
 				3CC3C02221A7293100AB86E0 /* Formatter.swift in Sources */,
 				3CC3C04721A7B65C00AB86E0 /* Post.swift in Sources */,
 				3CC3C02821A729CB00AB86E0 /* LocationManager.swift in Sources */,

@@ -51,13 +51,12 @@ class MoreController: UITableViewController {
                 navigationController?.pushViewController(profileViewController, animated: true)
             }
         case 1:
-            break
-//            let storyboard = UIStoryboard(name: "Statistic", bundle: nil)
-//            if let statsPageViewController = storyboard.instantiateViewController(withIdentifier: "StatsPageViewController") as?
-//                StatsRootPageViewController
-//            {
-//                navigationController?.pushViewController(statsPageViewController, animated: true)
-//            }
+            let storyboard = UIStoryboard(name: "Statistic", bundle: nil)
+            if let statsPageViewController = storyboard.instantiateViewController(withIdentifier: "StatsPageViewController") as?
+                StatsRootPageViewController
+            {
+                navigationController?.pushViewController(statsPageViewController, animated: true)
+            }
         case 2:
             let destination = AboutController()
             navigationController?.pushViewController(destination, animated: true)
