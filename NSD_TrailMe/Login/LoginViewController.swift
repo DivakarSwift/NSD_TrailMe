@@ -270,7 +270,7 @@ class LoginViewController: UIViewController {
                                               constant: 0))
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[sign]-|",
                                                                       options: [], metrics: nil, views: ["sign": signInButton]))
-         signInButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 58)
+         signInButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
         
         
         constraints.append(NSLayoutConstraint(item: fogotPasswordButton,

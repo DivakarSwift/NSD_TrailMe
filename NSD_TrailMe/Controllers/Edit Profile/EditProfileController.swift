@@ -23,7 +23,7 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
 
     let cellId = "cell"
     let headerId = "header"
-    let labels = ["First Name","Last Name", "Username", "Email", "Public"]
+    let labels = ["Username", "Email", "Public"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,25 +55,13 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
         cell.separatorInset = UIEdgeInsets(top: 0, left: 120, bottom: 0, right: 16)
         cell.selectionStyle = .none
         switch indexPath.row {
+       
         case 0:
-            cell.valueTextField.autocapitalizationType = .words
-            cell.valueTextField.placeholder = "First Name"
-            cell.valueTextField.text = self.user?.firstName
-            cell.valueTextField.clearButtonMode = .always
-
-        case 1:
-            cell.valueTextField.autocapitalizationType = .words
-            cell.valueTextField.placeholder = "Last Name"
-            cell.valueTextField.text = self.user?.lastName
-            cell.valueTextField.clearButtonMode = .always
-            
-        case 2:
             cell.valueTextField.autocapitalizationType = .none
             cell.valueTextField.placeholder = "Username"
             cell.valueTextField.text = self.user?.username
             cell.valueTextField.clearButtonMode = .always
-            
-        case 3:
+        case 1:
             cell.valueTextField.autocapitalizationType = .none
             cell.valueTextField.keyboardType = .emailAddress
             cell.valueTextField.placeholder = "Email"
@@ -81,7 +69,7 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
             cell.valueTextField.clearButtonMode = .never
             cell.valueTextField.isUserInteractionEnabled = false
             cell.accessoryType = .disclosureIndicator
-        case 4:
+        case 2:
             let switchView = UISwitch()
             switchView.setOn(self.user!.isPublic, animated: true)
             switchView.tag = indexPath.row
@@ -108,7 +96,7 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 3:
+        case 1:
             let emailCell = tableView.cellForRow(at: indexPath) as! EditProfileTableViewCell
             let email = emailCell.valueTextField.text
             let destination = EditEmailController()
@@ -137,22 +125,16 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
     }
     
     @objc func handleDone() {
-        let firstNameIndex = IndexPath(row: 0, section: 0)
-        let lastNameIndex = IndexPath(row: 1, section: 0)
-        let userNameIndex = IndexPath(row: 2, section: 0)
-        let emailIndex = IndexPath(row: 3, section: 0)
-        //let isPublicIndex = IndexPath(row: 4, section: 0)
-        let firstNameCell = tableView.cellForRow(at: firstNameIndex) as! EditProfileTableViewCell
-        let lastNameCell = tableView.cellForRow(at: lastNameIndex) as! EditProfileTableViewCell
+        let userNameIndex = IndexPath(row: 0, section: 0)
+        let emailIndex = IndexPath(row: 1, section: 0)
         let userNameCell = tableView.cellForRow(at: userNameIndex) as! EditProfileTableViewCell
         let emailCell = tableView.cellForRow(at: emailIndex) as! EditProfileTableViewCell
-        //let isPublicCell = tableView.cellForRow(at: isPublicIndex) as! EditProfileTableViewCell
-        if let firstName = firstNameCell.valueTextField.text ,let lastName = lastNameCell.valueTextField.text, let username = userNameCell.valueTextField.text, let email = emailCell.valueTextField.text {
-            if username.count > 0 && firstName.count > 0 && lastName.count > 0 && email.count > 0 {
+        if let username = userNameCell.valueTextField.text, let email = emailCell.valueTextField.text {
+            if username.count > 0 && email.count > 0 {
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 guard let profileImageUrl = self.user?.profileImageUrl else { return }
                 guard let fcmToken = Messaging.messaging().fcmToken else { return }
-                let dictionaryValues:[String:Any] = ["firstName": firstName, "lastName" : lastName, "userName": username, "email" : email, "isPublic": self.isPublic!, "profileImageUrl": profileImageUrl,"fcmToken":fcmToken]
+                let dictionaryValues:[String:Any] = ["userName": username, "email" : email, "isPublic": self.isPublic!, "profileImageUrl": profileImageUrl,"fcmToken":fcmToken]
                 let values = [uid:dictionaryValues]
                 
                 Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
@@ -200,13 +182,11 @@ class EditProfileController: UITableViewController, UIImagePickerControllerDeleg
                     print(err.localizedDescription)
                 } else {
                     guard let profileImageUrl = url?.absoluteString else { return }
-                    guard let firstName = self.user?.firstName else { return }
-                    guard let lastName = self.user?.lastName else { return }
                     guard let userName = self.user?.username else { return }
                     guard let email = self.user?.email else { return }
                     guard let isPublic = self.user?.isPublic else { return }
                     self.profileImageUrl = profileImageUrl
-                    let dictionaryValues = ["firstName": firstName, "lastName" : lastName, "userName": userName, "email" : email, "isPublic": isPublic, "profileImageUrl": profileImageUrl] as [String : Any]
+                    let dictionaryValues = ["userName": userName, "email" : email, "isPublic": isPublic, "profileImageUrl": profileImageUrl] as [String : Any]
                     let values = [uid:dictionaryValues]
                     Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
                         if let err = error {

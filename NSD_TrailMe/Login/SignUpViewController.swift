@@ -10,13 +10,11 @@ import UIKit
 import MaterialComponents
 import Firebase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK:- Properties
     var blurEffectView: UIVisualEffectView?
     var isPublic = false
-    var validFirstName = false
-    var validLastName = false
     var validUserName = false
     var validPassword = false
     var validEmail = false
@@ -28,8 +26,6 @@ class SignUpViewController: UIViewController {
     // Text Fields Controllers
     let emailTextFieldController: MDCTextInputControllerOutlined
     let passwordTextFieldController: MDCTextInputControllerOutlined
-    let firstnameTextFieldController: MDCTextInputControllerOutlined
-    let lastnameTextFieldController: MDCTextInputControllerOutlined
     let usernameTextFieldController: MDCTextInputControllerOutlined
     
     let scrollView: UIScrollView = {
@@ -65,6 +61,27 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
+    let profileImageView: UIButton = {
+        let iv = UIButton(type: .system)
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.setImage(UIImage(named: "no_image")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        iv.contentMode = .scaleAspectFill
+        iv.layer.masksToBounds = true
+        iv.layer.borderColor = UIColor.white.cgColor
+        iv.layer.borderWidth = 3
+        iv.addTarget(self, action: #selector(handleEditProfileImage), for: .touchUpInside)
+        return iv
+    }()
+    
+    let changeProfileImageLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Change"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        return label
+    }()
+    
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up with Email", for: .normal)
@@ -91,29 +108,6 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
-    let firstNameTextField: MDCTextField = {
-        let tf = MDCTextField()
-        tf.autocapitalizationType = .words
-        tf.clearButtonMode = .always
-        tf.textColor = .white
-        tf.returnKeyType = .next
-        tf.autocorrectionType = .no
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.addTarget(self, action: #selector(textEditingChangedFirstname(_:)), for: .editingChanged)
-        return tf
-    }()
-    
-    let lastNameTextField: MDCTextField = {
-        let tf = MDCTextField()
-        tf.autocapitalizationType = .words
-        tf.clearButtonMode = .always
-        tf.textColor = .white
-        tf.returnKeyType = .next
-        tf.autocorrectionType = .no
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.addTarget(self, action: #selector(textEditingChangedLastname(_:)), for: .editingChanged)
-        return tf
-    }()
     
     let usernameTextField: MDCTextField = {
         let tf = MDCTextField()
@@ -174,15 +168,13 @@ class SignUpViewController: UIViewController {
         return UIStatusBarStyle.lightContent
     }
     
-   
+    
     
     // MARK: - Methods
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
         emailTextFieldController = MDCTextInputControllerOutlined(textInput: emailTextField)
         passwordTextFieldController = MDCTextInputControllerOutlined(textInput: passwordTextField)
-        firstnameTextFieldController = MDCTextInputControllerOutlined(textInput: firstNameTextField)
-        lastnameTextFieldController = MDCTextInputControllerOutlined(textInput: lastNameTextField)
         usernameTextFieldController = MDCTextInputControllerOutlined(textInput: usernameTextField)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -203,35 +195,30 @@ class SignUpViewController: UIViewController {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
         usernameTextField.delegate = self
         
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
-        firstNameTextField.placeholder = "Firstname"
-        lastNameTextField.placeholder = "Lastname"
         usernameTextField.placeholder = "Username"
         
         scrollView.backgroundColor = .clear
+        profileImageView.layer.cornerRadius = 50
         
         
         validPassword = false
         validEmail = false
         validUserName = false
         validEmail = false
-        validFirstName = false
-        validLastName = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
         
-    
+        
         if UIScreen.main.bounds.size.height < 736 {
             registerForKeyboardNotifications()
         }
     }
     
-     func registerForKeyboardNotifications () {
+    func registerForKeyboardNotifications () {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -246,13 +233,32 @@ class SignUpViewController: UIViewController {
         activeField?.superview?.frame = aRect!
         scrollView.setContentOffset(CGPoint(x: 0, y: (activeField?.frame.origin.y)!-keyboardSize.height), animated: true)
     }
-
+    
     @objc func keyboardWillBeHidden(notification: Notification){
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
+    @objc func handleEditProfileImage() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.profileImageView.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.profileImageView.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func saveProfileImageToStorage(){
+        
+    }
     fileprivate func setupUI() {
         var constraints = [NSLayoutConstraint]()
         view.addSubview(heroImage)
@@ -289,8 +295,8 @@ class SignUpViewController: UIViewController {
         scrollView.addGestureRecognizer(tapGestureRecognizer)
         scrollView.addSubview(headerLabel)
         scrollView.addSubview(ctaLabel)
-        scrollView.addSubview(firstNameTextField)
-        scrollView.addSubview(lastNameTextField)
+        scrollView.addSubview(profileImageView)
+        scrollView.addSubview(changeProfileImageLabel)
         scrollView.addSubview(usernameTextField)
         scrollView.addSubview(emailTextField)
         scrollView.addSubview(passwordTextField)
@@ -328,42 +334,55 @@ class SignUpViewController: UIViewController {
                                               attribute: .centerX,
                                               multiplier: 1,
                                               constant: 0))
-        constraints.append(NSLayoutConstraint(item: firstNameTextField,
+        
+        constraints.append(NSLayoutConstraint(item: profileImageView,
                                               attribute: .top,
                                               relatedBy: .equal,
                                               toItem: ctaLabel,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 8))
-        constraints.append(NSLayoutConstraint(item: firstNameTextField,
+                                              constant: 12))
+        constraints.append(NSLayoutConstraint(item: profileImageView,
                                               attribute: .centerX,
                                               relatedBy: .equal,
                                               toItem: scrollView,
                                               attribute: .centerX,
                                               multiplier: 1,
                                               constant: 0))
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[first]-|",
-                                                                      options: [], metrics: nil, views: ["first": firstNameTextField]))
-        constraints.append(NSLayoutConstraint(item: lastNameTextField,
-                                              attribute: .top,
+        constraints.append(NSLayoutConstraint(item: profileImageView,
+                                              attribute: .width,
                                               relatedBy: .equal,
-                                              toItem: firstNameTextField,
+                                              toItem: nil,
+                                              attribute: .width,
+                                              multiplier: 1,
+                                              constant: 100))
+        constraints.append(NSLayoutConstraint(item: profileImageView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: nil,
+                                              attribute: .height,
+                                              multiplier: 1,
+                                              constant: 100))
+        
+        constraints.append(NSLayoutConstraint(item: changeProfileImageLabel,
+                                              attribute: .bottom,
+                                              relatedBy: .equal,
+                                              toItem: profileImageView,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 4))
-        constraints.append(NSLayoutConstraint(item: lastNameTextField,
+                                              constant: -12))
+        constraints.append(NSLayoutConstraint(item: changeProfileImageLabel,
                                               attribute: .centerX,
                                               relatedBy: .equal,
                                               toItem: scrollView,
                                               attribute: .centerX,
                                               multiplier: 1,
                                               constant: 0))
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[last]-|",
-                                                                      options: [], metrics: nil, views: ["last": lastNameTextField]))
+        
         constraints.append(NSLayoutConstraint(item: usernameTextField,
                                               attribute: .top,
                                               relatedBy: .equal,
-                                              toItem: lastNameTextField,
+                                              toItem: profileImageView,
                                               attribute: .bottom,
                                               multiplier: 1,
                                               constant: 4))
@@ -424,12 +443,12 @@ class SignUpViewController: UIViewController {
                                               constant: 0))
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[sign]-|",
                                                                       options: [], metrics: nil, views: ["sign": signUpButton]))
-        signUpButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 58)
+        signUpButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
         
         privacyLabel.anchor(top: signUpButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 20)
-        privacyCheckBox.anchor(top: privacyLabel.topAnchor, left: privacyLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
+        privacyCheckBox.anchor(top: privacyLabel.topAnchor, left: privacyLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 0, width: 18, height: 18)
         
-    
+        
         constraints.append(NSLayoutConstraint(item: privacyLabel,
                                               attribute: .centerX,
                                               relatedBy: .equal,
@@ -491,26 +510,6 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    @objc func textEditingChangedFirstname(_ textField: MDCTextField){
-        if (textField.text!.count < 3){
-            firstnameTextFieldController.setErrorText("enter valid name", errorAccessibilityValue: nil)
-            validFirstName = false
-        } else {
-            firstnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validFirstName = true
-        }
-    }
-    
-    @objc func textEditingChangedLastname(_ textField: MDCTextField){
-        if (textField.text!.count < 3){
-            lastnameTextFieldController.setErrorText("enter valid name", errorAccessibilityValue: nil)
-            validLastName = false
-        } else {
-            lastnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-            validLastName = true
-        }
-    }
-    
     @objc func textEditingChangedUsername(_ textField: MDCTextField){
         if (textField.text!.count < 3){
             usernameTextFieldController.setErrorText("enter valid username", errorAccessibilityValue: nil)
@@ -554,10 +553,8 @@ class SignUpViewController: UIViewController {
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         }
-        if (validPassword == true && validUserName == true && validLastName == true && validFirstName == true && validEmail == true){
+        if (validPassword == true && validUserName == true && validEmail == true){
             //print("All fields valid... signing up")
-            guard let firstName = firstNameTextField.text else { return }
-            guard let lastName = lastNameTextField.text else { return }
             guard let username = usernameTextField.text else { return }
             guard let email = emailTextField.text else { return }
             guard let password = passwordTextField.text else { return }
@@ -569,7 +566,7 @@ class SignUpViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
-                guard let image = UIImage(named: "no_image") else { return }
+                guard let image = self.profileImageView.imageView?.image else { return }
                 guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
                 guard let user = result?.user else { return }
                 let uid = user.uid
@@ -585,7 +582,7 @@ class SignUpViewController: UIViewController {
                         } else {
                             guard let profileImageUrl = url?.absoluteString else { return }
                             guard let fcmToken = Messaging.messaging().fcmToken else { return }
-                            let dictionaryValues: [String:Any] = ["firstName": firstName, "lastName": lastName, "userName": username, "email": email, "isPublic": self.isPublic,"profileImageUrl":profileImageUrl,"fcmToken":fcmToken]
+                            let dictionaryValues: [String:Any] = ["userName": username, "email": email, "isPublic": self.isPublic,"profileImageUrl":profileImageUrl,"fcmToken":fcmToken]
                             let values = [uid:dictionaryValues]
                             Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, ref) in
                                 if let err = error {
@@ -607,7 +604,7 @@ class SignUpViewController: UIViewController {
         }
         
     }
-
+    
 }
 
 // MARK: - UITextFieldDelegate
@@ -616,24 +613,6 @@ extension SignUpViewController: UITextFieldDelegate {
     // Add basic password field validation in the textFieldShouldReturn delegate function
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case firstNameTextField:
-            if (firstNameTextField.text != nil && firstNameTextField.text!.count < 3){
-                firstnameTextFieldController.setErrorText("Firstname must be at least 3 characters", errorAccessibilityValue: nil)
-                validFirstName = false
-            } else {
-                firstnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-                validFirstName = true
-                lastNameTextField.becomeFirstResponder()
-            }
-        case lastNameTextField:
-            if (lastNameTextField.text != nil && lastNameTextField.text!.count < 3){
-                lastnameTextFieldController.setErrorText("Lastname must be at least 3 characters", errorAccessibilityValue: nil)
-                validLastName = false
-            } else {
-                lastnameTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-                validLastName = true
-                usernameTextField.becomeFirstResponder()
-            }
         case usernameTextField:
             if (usernameTextField.text != nil && usernameTextField.text!.count < 3){
                 usernameTextFieldController.setErrorText("Username must be at least 3 characters", errorAccessibilityValue: nil)
@@ -643,7 +622,7 @@ extension SignUpViewController: UITextFieldDelegate {
                 validUserName = true
                 view.endEditing(true)
                 emailTextField.becomeFirstResponder()
-        }
+            }
         case emailTextField:
             if (emailTextField.text != nil && !isEmailValid(email: emailTextField.text!)) {
                 emailTextFieldController.setErrorText("Must enter a valid email", errorAccessibilityValue: nil)
@@ -652,16 +631,16 @@ extension SignUpViewController: UITextFieldDelegate {
                 emailTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
                 validEmail = true
                 passwordTextField.becomeFirstResponder()
-        }
+            }
         case passwordTextField:
-           if (passwordTextField.text != nil && passwordTextField.text!.count < 6) {
-                    passwordTextFieldController.setErrorText("Password must be at least 6 characters", errorAccessibilityValue: nil)
-                    validPassword = false
-                } else {
-                    passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
-                    validPassword = true
-                    textField.resignFirstResponder()
-                }
+            if (passwordTextField.text != nil && passwordTextField.text!.count < 6) {
+                passwordTextFieldController.setErrorText("Password must be at least 6 characters", errorAccessibilityValue: nil)
+                validPassword = false
+            } else {
+                passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
+                validPassword = true
+                textField.resignFirstResponder()
+            }
         default:
             textField.resignFirstResponder()
         }
@@ -671,7 +650,7 @@ extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeField = textField
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeField = nil
     }

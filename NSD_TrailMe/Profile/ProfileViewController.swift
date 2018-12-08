@@ -282,8 +282,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     fileprivate func getUsername() {
-        guard let firstName = user?.firstName, let lastName = user?.lastName  else {return}
-        self.nameLabel.text = "\(firstName) \(lastName)"
+        guard let username = user?.username else {return}
+        self.nameLabel.text = "\(username)"
     }
 
     fileprivate func getProfileImage() {
