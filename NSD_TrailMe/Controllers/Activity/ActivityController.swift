@@ -168,10 +168,17 @@ class ActivityController: UIViewController {
     fileprivate func configureLocationServices() {
         locationManager.delegate = self
         let status =  CLLocationManager.authorizationStatus()
-        if status  == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        } else if status == .authorizedAlways || status == .authorizedWhenInUse {
+        switch status {
+        case .denied:
+            locationManager.requestWhenInUseAuthorization()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedAlways:
             startLocationUpdates()
+        case .authorizedWhenInUse:
+            startLocationUpdates()
+        default:
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     
@@ -183,7 +190,7 @@ class ActivityController: UIViewController {
     }
     
     fileprivate func zoomToLocation(with coordinate: CLLocationCoordinate2D){
-        let zoomRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+        let zoomRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         mapView.setRegion(zoomRegion, animated: true)
     }
     
@@ -392,8 +399,18 @@ extension ActivityController:  CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
+        
+        switch status {
+        case .denied:
+            locationManager.requestWhenInUseAuthorization()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse:
             startLocationUpdates()
+        case .authorizedAlways:
+            startLocationUpdates()
+        default:
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

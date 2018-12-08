@@ -20,7 +20,7 @@ class MoreController: UITableViewController {
         setupLogout()
         
         view.backgroundColor = backColor
-        title = "More"
+        title = "Profile"
         navigationController?.navigationBar.prefersLargeTitles = false
         tableView = UITableView(frame: self.tableView.frame, style: .grouped)
         tableView.register(MoreTableViewCell.self, forCellReuseIdentifier: "cell")

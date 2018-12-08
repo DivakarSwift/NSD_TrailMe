@@ -58,7 +58,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let moreController = MoreController()
         let moreNavController = UINavigationController(rootViewController: moreController)
-        moreNavController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+        moreNavController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user"), tag: 4)
         
         viewControllers = [homeNavController, historyNavController, activityNavController, searchNavController, moreNavController]
         
