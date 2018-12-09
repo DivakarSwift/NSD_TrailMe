@@ -12,8 +12,8 @@ import Firebase
 
 
 class MoreController: UITableViewController {
-    let items = ["Profile", "Stats", "About"]
-    let icons = ["user", "stopwatch", "info"]
+    let items = ["Profile", "Stats", "Awards", "About"]
+    let icons = ["user", "stopwatch", "awards", "info"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +58,8 @@ class MoreController: UITableViewController {
                 navigationController?.pushViewController(statsPageViewController, animated: true)
             }
         case 2:
+            break
+        case 3:
             let destination = AboutController()
             navigationController?.pushViewController(destination, animated: true)
             

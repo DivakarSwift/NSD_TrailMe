@@ -89,6 +89,11 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if posts.count == 0 {
+            self.collectionView.setEmptyDisplay("You have no posts in your feed. Share or follow to view posts.")
+            return posts.count
+        }
+        self.collectionView.restoreView()
         return posts.count
     }
 
@@ -146,6 +151,22 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             self.posts[indexPath.item] = post
             self.collectionView.reloadItems(at: [indexPath])
         }
+    }
+}
+
+extension UICollectionView {
+    func setEmptyDisplay(_ text: String){
+        let message = UILabel(frame: CGRect(x: 0, y: 0, width:self.bounds.size.width , height: self.bounds.size.height))
+        message.text = text
+        message.textColor = mainColor
+        message.numberOfLines = 0
+        message.textAlignment = .center
+        message.sizeToFit()
+        
+        self.backgroundView = message
+    }
+    func restoreView()  {
+        self.backgroundView = nil
     }
 }
 

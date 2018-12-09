@@ -55,6 +55,11 @@ class HistoryController: UITableViewController, NSFetchedResultsControllerDelega
    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = fetchedResultsController.sections?[0].numberOfObjects {
+            if count == 0 {
+                self.tableView.setEmptyDisplay("Your activity history is empty. Go track an activity!")
+                return count
+            }
+            self.tableView.restoreView()
             return count
         }
         return 0
@@ -91,5 +96,24 @@ extension HistoryController: MKMapViewDelegate {
         renderer.strokeColor = .blue
         renderer.lineWidth = 3
         return renderer
+    }
+}
+
+extension UITableView {
+    func setEmptyDisplay(_ text: String){
+        let message = UILabel(frame: CGRect(x: 0, y: 0, width:self.bounds.size.width , height: self.bounds.size.height))
+        message.text = text
+        message.textColor = mainColor
+        message.numberOfLines = 0
+        message.textAlignment = .center
+        message.sizeToFit()
+        
+        self.backgroundView = message
+        self.separatorStyle = .none
+    }
+    
+    func restoreView()  {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }
