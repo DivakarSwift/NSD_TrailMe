@@ -58,7 +58,10 @@ class MoreController: UITableViewController {
                 navigationController?.pushViewController(statsPageViewController, animated: true)
             }
         case 2:
-            break
+            let storyboard = UIStoryboard(name: "Awards", bundle: nil)
+            if let awardsTableViewController = storyboard.instantiateViewController(withIdentifier: "AwardsTableViewController") as? AwardsTableViewController{
+                navigationController?.pushViewController(awardsTableViewController, animated: true)
+            }
         case 3:
             let destination = AboutController()
             navigationController?.pushViewController(destination, animated: true)

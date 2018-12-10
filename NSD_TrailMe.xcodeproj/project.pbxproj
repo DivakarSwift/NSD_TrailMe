@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1E92BA1D9B2B8BBA49DFE294 /* Pods_NSD_TrailMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5DA3AF2EE539015C345281 /* Pods_NSD_TrailMe.framework */; };
+		3C117CC921BDDA4D00D87BB9 /* Awards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C117CC821BDDA4D00D87BB9 /* Awards.storyboard */; };
+		3C117CCC21BDDB5400D87BB9 /* AwardCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C117CCA21BDDB5400D87BB9 /* AwardCellTableViewCell.swift */; };
+		3C117CCD21BDDB5400D87BB9 /* AwardCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C117CCB21BDDB5400D87BB9 /* AwardCellTableViewCell.xib */; };
+		3C117CCF21BDDF1100D87BB9 /* AwardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C117CCE21BDDF1100D87BB9 /* AwardsTableViewController.swift */; };
+		3C117CD121BDE33A00D87BB9 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C117CD021BDE33A00D87BB9 /* Award.swift */; };
 		3C26262221BC512700579B77 /* Statistic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C26262121BC512700579B77 /* Statistic.storyboard */; };
 		3C26262421BC51AC00579B77 /* RunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262321BC51AC00579B77 /* RunTableViewController.swift */; };
 		3C26262621BC51B700579B77 /* WalkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26262521BC51B700579B77 /* WalkTableViewController.swift */; };
@@ -64,6 +69,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C117CC821BDDA4D00D87BB9 /* Awards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Awards.storyboard; sourceTree = "<group>"; };
+		3C117CCA21BDDB5400D87BB9 /* AwardCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCellTableViewCell.swift; sourceTree = "<group>"; };
+		3C117CCB21BDDB5400D87BB9 /* AwardCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AwardCellTableViewCell.xib; sourceTree = "<group>"; };
+		3C117CCE21BDDF1100D87BB9 /* AwardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsTableViewController.swift; sourceTree = "<group>"; };
+		3C117CD021BDE33A00D87BB9 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		3C26262121BC512700579B77 /* Statistic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistic.storyboard; sourceTree = "<group>"; };
 		3C26262321BC51AC00579B77 /* RunTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTableViewController.swift; sourceTree = "<group>"; };
 		3C26262521BC51B700579B77 /* WalkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkTableViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +227,7 @@
 				3CC3C04821A7B66200AB86E0 /* Comment.swift */,
 				3CC3C04621A7B65C00AB86E0 /* Post.swift */,
 				3CC3C04421A7B65500AB86E0 /* User.swift */,
+				3C117CD021BDE33A00D87BB9 /* Award.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,6 +274,10 @@
 				3C26262321BC51AC00579B77 /* RunTableViewController.swift */,
 				3C26262521BC51B700579B77 /* WalkTableViewController.swift */,
 				3CF1B91721A507B9003EA849 /* MoreTableViewCell.swift */,
+				3C117CC821BDDA4D00D87BB9 /* Awards.storyboard */,
+				3C117CCA21BDDB5400D87BB9 /* AwardCellTableViewCell.swift */,
+				3C117CCB21BDDB5400D87BB9 /* AwardCellTableViewCell.xib */,
+				3C117CCE21BDDF1100D87BB9 /* AwardsTableViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -392,9 +407,11 @@
 				3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */,
 				3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */,
 				3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */,
+				3C117CC921BDDA4D00D87BB9 /* Awards.storyboard in Resources */,
 				3C26262221BC512700579B77 /* Statistic.storyboard in Resources */,
 				3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */,
 				3CC3C03521A7B47200AB86E0 /* Alternate.storyboard in Resources */,
+				3C117CCD21BDDB5400D87BB9 /* AwardCellTableViewCell.xib in Resources */,
 				3CC3C03C21A7B4BE00AB86E0 /* ActivityCollectionViewCell.xib in Resources */,
 				3CC3C04021A7B4BE00AB86E0 /* FollowCollectionViewCell.xib in Resources */,
 			);
@@ -495,6 +512,8 @@
 				3CC3C03F21A7B4BE00AB86E0 /* ActivityViewController.swift in Sources */,
 				3C26262621BC51B700579B77 /* WalkTableViewController.swift in Sources */,
 				3C56D20521A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld in Sources */,
+				3C117CCC21BDDB5400D87BB9 /* AwardCellTableViewCell.swift in Sources */,
+				3C117CCF21BDDF1100D87BB9 /* AwardsTableViewController.swift in Sources */,
 				3CC3C07121A7C11A00AB86E0 /* SearchController.swift in Sources */,
 				3CC3C04121A7B4BE00AB86E0 /* ProfileViewController.swift in Sources */,
 				3C26262A21BC51D400579B77 /* StatsRootPageViewController.swift in Sources */,
@@ -509,6 +528,7 @@
 				3CC3C02821A729CB00AB86E0 /* LocationManager.swift in Sources */,
 				3CC3C04E21A7B7F600AB86E0 /* EditProfileTableViewCell.swift in Sources */,
 				3CC3C02F21A734C500AB86E0 /* NoteController.swift in Sources */,
+				3C117CD121BDE33A00D87BB9 /* Award.swift in Sources */,
 				3CC3C02621A729A500AB86E0 /* CustomImageView.swift in Sources */,
 				3CF1B91A21A50805003EA849 /* AboutController.swift in Sources */,
 				3CC3C04921A7B66200AB86E0 /* Comment.swift in Sources */,
