@@ -17,7 +17,7 @@ class AwardsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "AwardCellTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
 
-        let firstAward = Award(awardImage: "award0", awardDescription: "Your first award")
+        let firstAward = Award(awardImage: "award0", awardDescription: "Your first Activity Award")
         awards.append(firstAward)
     }
 
