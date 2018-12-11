@@ -17,7 +17,7 @@ class CheckBox: UIButton {
         let origUnselectedWhite = origUnselected?.withRenderingMode(.alwaysTemplate)
         self.setImage(origSelectedWhite, for: .selected)
         self.setImage(origUnselectedWhite, for: .normal)
-        self.tintColor = .white
+        self.tintColor = .black
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     

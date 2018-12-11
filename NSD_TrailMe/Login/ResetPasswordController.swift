@@ -15,7 +15,7 @@ class ResetPasswordController: UIViewController {
     // MARK:- Properties
     var blurEffectView: UIVisualEffectView?
     let activityIndicator = UIActivityIndicatorView()
-    let emailTextFieldController: MDCTextInputControllerOutlined
+    let emailTextFieldController: MDCTextInputControllerFilled
     var validEmail = false
     
     let heroImage: UIImageView = {
@@ -48,7 +48,7 @@ class ResetPasswordController: UIViewController {
         tf.autocapitalizationType = .none
         tf.placeholder = "Email"
         tf.clearButtonMode = .always
-        tf.textColor = .white
+        tf.textColor = .black
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedEmail(_:)), for: .editingChanged)
         return tf
@@ -69,7 +69,7 @@ class ResetPasswordController: UIViewController {
     let cancelButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Cancel", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +86,7 @@ class ResetPasswordController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
-        emailTextFieldController = MDCTextInputControllerOutlined(textInput: emailTextField)
+        emailTextFieldController = MDCTextInputControllerFilled(textInput: emailTextField)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -103,7 +103,7 @@ class ResetPasswordController: UIViewController {
         let blurEffect = UIBlurEffect(style: .dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView?.frame = view.bounds
-        heroImage.addSubview(blurEffectView!)
+        //heroImage.addSubview(blurEffectView!)
         scrollView.backgroundColor = .clear
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         

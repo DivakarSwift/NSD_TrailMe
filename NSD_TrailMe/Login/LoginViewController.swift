@@ -18,8 +18,8 @@ class LoginViewController: UIViewController {
     var validPassword = false
     
     // Text Fields Controllers
-    let emailTextFieldController: MDCTextInputControllerOutlined
-    let passwordTextFieldController: MDCTextInputControllerOutlined
+    let emailTextFieldController: MDCTextInputControllerFilled
+    let passwordTextFieldController: MDCTextInputControllerFilled
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
     let fogotPasswordButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Forgot my password", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -78,10 +78,10 @@ class LoginViewController: UIViewController {
     
     let noAccountLabel: UIButton = {
         let button = UIButton(type: .system)
-        let attributedText = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         
         attributedText.append(NSAttributedString(string: "Sign Up",
-                                                 attributes: [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)]))
+                                                 attributes: [ NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)]))
         
         button.setAttributedTitle(attributedText, for: .normal)
         button.addTarget(self, action: #selector(handleDontHaveAccount), for: .touchUpInside)
@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
         let tf = MDCTextField()
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
-        tf.textColor = .white
+        tf.textColor = .black
         tf.clearButtonMode = .always
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedEmail(_:)), for: .editingChanged)
@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
     let passwordTextField: MDCTextField = {
         let tf = MDCTextField()
         tf.isSecureTextEntry = true
-        tf.textColor = .white
+        tf.textColor = .black
         tf.clearButtonMode = .always
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedPassword(_:)), for: .editingChanged)
@@ -121,8 +121,8 @@ class LoginViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
-        emailTextFieldController = MDCTextInputControllerOutlined(textInput: emailTextField)
-        passwordTextFieldController = MDCTextInputControllerOutlined(textInput: passwordTextField)
+        emailTextFieldController = MDCTextInputControllerFilled(textInput: emailTextField)
+        passwordTextFieldController = MDCTextInputControllerFilled(textInput: passwordTextField)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -139,7 +139,7 @@ class LoginViewController: UIViewController {
         let blurEffect = UIBlurEffect(style: .dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView?.frame = view.bounds
-        heroImage.addSubview(blurEffectView!)
+        //heroImage.addSubview(blurEffectView!)
         
         emailTextField.delegate = self
         emailTextField.placeholder = "Email"
@@ -270,7 +270,7 @@ class LoginViewController: UIViewController {
                                               constant: 0))
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[sign]-|",
                                                                       options: [], metrics: nil, views: ["sign": signInButton]))
-         signInButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
+         signInButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 58)
         
         
         constraints.append(NSLayoutConstraint(item: fogotPasswordButton,
@@ -279,7 +279,7 @@ class LoginViewController: UIViewController {
                                               toItem: signInButton,
                                               attribute: .bottom,
                                               multiplier: 1,
-                                              constant: 24))
+                                              constant: 84))
         constraints.append(NSLayoutConstraint(item: fogotPasswordButton,
                                               attribute: .centerX,
                                               relatedBy: .equal,

@@ -24,9 +24,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     // Text Fields Controllers
-    let emailTextFieldController: MDCTextInputControllerOutlined
-    let passwordTextFieldController: MDCTextInputControllerOutlined
-    let usernameTextFieldController: MDCTextInputControllerOutlined
+    let emailTextFieldController: MDCTextInputControllerFilled
+    let passwordTextFieldController: MDCTextInputControllerFilled
+    let usernameTextFieldController: MDCTextInputControllerFilled
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -67,7 +67,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         iv.setImage(UIImage(named: "no_image")?.withRenderingMode(.alwaysOriginal), for: .normal)
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
-        iv.layer.borderColor = UIColor.white.cgColor
+        iv.layer.borderColor = UIColor.black.cgColor
         iv.layer.borderWidth = 3
         iv.addTarget(self, action: #selector(handleEditProfileImage), for: .touchUpInside)
         return iv
@@ -97,10 +97,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let haveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedText = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         
         attributedText.append(NSAttributedString(string: "Log In",
-                                                 attributes: [ NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)]))
+                                                 attributes: [ NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 14)]))
         
         button.setAttributedTitle(attributedText, for: .normal)
         button.addTarget(self, action: #selector(handleHaveAccount), for: .touchUpInside)
@@ -113,7 +113,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let tf = MDCTextField()
         tf.autocapitalizationType = .none
         tf.clearButtonMode = .always
-        tf.textColor = .white
+        tf.textColor = .black
         tf.returnKeyType = .next
         tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -125,7 +125,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let tf = MDCTextField()
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
-        tf.textColor = .white
+        tf.textColor = .black
         tf.clearButtonMode = .always
         tf.returnKeyType = .next
         tf.autocorrectionType = .no
@@ -137,7 +137,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let passwordTextField: MDCTextField = {
         let tf = MDCTextField()
         tf.isSecureTextEntry = true
-        tf.textColor = .white
+        tf.textColor = .black
         tf.clearButtonMode = .always
         tf.returnKeyType = .done
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -148,7 +148,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let privacyLabel : UILabel = {
         let label = UILabel()
         label.text = "Make account public"
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -173,9 +173,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: - Methods
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
-        emailTextFieldController = MDCTextInputControllerOutlined(textInput: emailTextField)
-        passwordTextFieldController = MDCTextInputControllerOutlined(textInput: passwordTextField)
-        usernameTextFieldController = MDCTextInputControllerOutlined(textInput: usernameTextField)
+        emailTextFieldController = MDCTextInputControllerFilled(textInput: emailTextField)
+        passwordTextFieldController = MDCTextInputControllerFilled(textInput: passwordTextField)
+        usernameTextFieldController = MDCTextInputControllerFilled(textInput: usernameTextField)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -191,7 +191,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let blurEffect = UIBlurEffect(style: .dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView?.frame = view.bounds
-        heroImage.addSubview(blurEffectView!)
+        //heroImage.addSubview(blurEffectView!)
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -312,7 +312,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                               toItem: scrollView.contentLayoutGuide,
                                               attribute: .top,
                                               multiplier: 1,
-                                              constant: 30))
+                                              constant: 50))
         constraints.append(NSLayoutConstraint(item: headerLabel,
                                               attribute: .centerX,
                                               relatedBy: .equal,
@@ -443,7 +443,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                               constant: 0))
         constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[sign]-|",
                                                                       options: [], metrics: nil, views: ["sign": signUpButton]))
-        signUpButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
+        signUpButton.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 58)
         
         privacyLabel.anchor(top: signUpButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 20)
         privacyCheckBox.anchor(top: privacyLabel.topAnchor, left: privacyLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 0, width: 18, height: 18)
@@ -599,7 +599,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             
         } else {
             let alert = UIAlertController(title: "Form Error", message: "Form has errors, please correct to continue", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.signUpButton.isEnabled = true
+            }))
             present(alert, animated: true, completion: nil)
         }
         
