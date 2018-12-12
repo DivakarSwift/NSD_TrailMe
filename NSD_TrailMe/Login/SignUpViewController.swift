@@ -13,7 +13,6 @@ import Firebase
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK:- Properties
-    var blurEffectView: UIVisualEffectView?
     var isPublic = false
     var validUserName = false
     var validPassword = false
@@ -67,7 +66,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         iv.setImage(UIImage(named: "no_image")?.withRenderingMode(.alwaysOriginal), for: .normal)
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
-        iv.layer.borderColor = UIColor.black.cgColor
+        iv.layer.borderColor = mainColor.cgColor
         iv.layer.borderWidth = 3
         iv.addTarget(self, action: #selector(handleEditProfileImage), for: .touchUpInside)
         return iv
@@ -159,18 +158,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         return cb
     }()
     
-    
-    
-    
-    
-    // Light statusbar on dark background
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-    
-    
-    
-    // MARK: - Methods
+// MARK: - Methods
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
         emailTextFieldController = MDCTextInputControllerFilled(textInput: emailTextField)
@@ -188,11 +176,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         heroImage.image = UIImage(named: "frame_bg")
-        let blurEffect = UIBlurEffect(style: .dark)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView?.frame = view.bounds
-        //heroImage.addSubview(blurEffectView!)
-        
         emailTextField.delegate = self
         passwordTextField.delegate = self
         usernameTextField.delegate = self
@@ -256,9 +239,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismiss(animated: true, completion: nil)
     }
     
-    fileprivate func saveProfileImageToStorage(){
-        
-    }
     fileprivate func setupUI() {
         var constraints = [NSLayoutConstraint]()
         view.addSubview(heroImage)
@@ -476,10 +456,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         constraints.append(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: scrollView, attribute: .centerX, multiplier: 1, constant: 0))
         NSLayoutConstraint.activate(constraints)
         
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        blurEffectView?.frame = view.bounds
     }
     
     @objc func didTapTouch(sender: UIGestureRecognizer) {

@@ -13,7 +13,6 @@ import Firebase
 class ResetPasswordController: UIViewController {
     
     // MARK:- Properties
-    var blurEffectView: UIVisualEffectView?
     let activityIndicator = UIActivityIndicatorView()
     let emailTextFieldController: MDCTextInputControllerFilled
     var validEmail = false
@@ -100,10 +99,6 @@ class ResetPasswordController: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         heroImage.image = UIImage(named: "frame_bg")
-        let blurEffect = UIBlurEffect(style: .dark)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView?.frame = view.bounds
-        //heroImage.addSubview(blurEffectView!)
         scrollView.backgroundColor = .clear
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
@@ -254,7 +249,6 @@ class ResetPasswordController: UIViewController {
     
     @objc func handleReset() {
         if validEmail == true {
-            //print("Valid email... resetting")
             guard let email = emailTextField.text else { return }
             if activityIndicator.isAnimating == true {
                 activityIndicator.isHidden = true

@@ -13,7 +13,6 @@ import Firebase
 class LoginViewController: UIViewController {
     
     // MARK:- Properties
-    var blurEffectView: UIVisualEffectView?
     var validEmail = false
     var validPassword = false
     
@@ -95,6 +94,7 @@ class LoginViewController: UIViewController {
         tf.autocapitalizationType = .none
         tf.textColor = .black
         tf.clearButtonMode = .always
+        tf.autocorrectionType = .no
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedEmail(_:)), for: .editingChanged)
         return tf
@@ -109,15 +109,6 @@ class LoginViewController: UIViewController {
         tf.addTarget(self, action: #selector(textEditingChangedPassword(_:)), for: .editingChanged)
         return tf
     }()
-    
-    
-   
-    
-    
-    // Light statusbar on dark background
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         // Setup text field controllers
@@ -136,11 +127,6 @@ class LoginViewController: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         heroImage.image = UIImage(named: "frame_bg")
-        let blurEffect = UIBlurEffect(style: .dark)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView?.frame = view.bounds
-        //heroImage.addSubview(blurEffectView!)
-        
         emailTextField.delegate = self
         emailTextField.placeholder = "Email"
         passwordTextField.placeholder = "Password"
@@ -308,10 +294,6 @@ class LoginViewController: UIViewController {
        
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        blurEffectView?.frame = view.bounds
-    }
-    
     @objc func didTapTouch(sender: UIGestureRecognizer) {
         view.endEditing(true)
     }
@@ -410,7 +392,7 @@ class LoginViewController: UIViewController {
     
     @objc func textEditingChangedEmail(_ textField: MDCTextField){
         if !isEmailValid(email: textField.text!){
-            emailTextFieldController.setErrorText("enter valid email", errorAccessibilityValue: nil)
+            emailTextFieldController.setErrorText("Email must be a valid email", errorAccessibilityValue: nil)
             validEmail = false
         } else {
             emailTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
@@ -420,7 +402,7 @@ class LoginViewController: UIViewController {
     
     @objc func textEditingChangedPassword(_ textField: MDCTextField){
         if (textField.text!.count < 6){
-            passwordTextFieldController.setErrorText("enter valid password", errorAccessibilityValue: nil)
+            passwordTextFieldController.setErrorText("Password must be at least 6 characters", errorAccessibilityValue: nil)
             validPassword = false
         } else {
             passwordTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
@@ -454,7 +436,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
         
         if (textField == emailTextField && emailTextField.text != nil && !isEmailValid(email: emailTextField.text!)) {
-            emailTextFieldController.setErrorText("Must enter a valid email", errorAccessibilityValue: nil)
+            emailTextFieldController.setErrorText("Must enter valid email", errorAccessibilityValue: nil)
         } else {
             emailTextFieldController.setErrorText(nil, errorAccessibilityValue: nil)
         }

@@ -26,13 +26,11 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
+        
+        fetchUserPosts()
+        getFollowingPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getFollowingPosts()
-        fetchUserPosts()
-    }
 
     fileprivate func getFollowingPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -52,8 +50,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     @objc  func handleRefresh() {
         posts.removeAll(keepingCapacity: false)
-        getFollowingPosts()
+        
         fetchUserPosts()
+        getFollowingPosts()
     }
 
     fileprivate func fetchUserPosts() {

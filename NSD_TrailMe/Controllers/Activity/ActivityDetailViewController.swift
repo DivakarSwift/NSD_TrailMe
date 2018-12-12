@@ -129,6 +129,7 @@ class ActivityDetailViewController: UIViewController {
             noteTextView.text = noteText
             activity.note = noteText
             CoreDataStack.saveContext()
+            ActivityDetailViewController.note = nil
         }
     }
     fileprivate func saveToDatabase(with imageUrl: String){
