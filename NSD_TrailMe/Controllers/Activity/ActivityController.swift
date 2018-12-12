@@ -170,15 +170,15 @@ class ActivityController: UIViewController {
         let status =  CLLocationManager.authorizationStatus()
         switch status {
         case .denied:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         case .authorizedAlways:
             startLocationUpdates()
         case .authorizedWhenInUse:
             startLocationUpdates()
         default:
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
         }
     }
     
@@ -186,6 +186,8 @@ class ActivityController: UIViewController {
         mapView.showsUserLocation = true
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 10
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
     }
     

@@ -26,6 +26,7 @@
 		3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */; };
 		3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */; };
 		3C6E3A8E21A441EA00FBA0D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */; };
+		3C9E6C5821C143C10040C3BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C9E6C5721C143C10040C3BC /* GoogleService-Info.plist */; };
 		3CC3C02221A7293100AB86E0 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02121A7293100AB86E0 /* Formatter.swift */; };
 		3CC3C02421A7297500AB86E0 /* UnitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02321A7297500AB86E0 /* UnitExtension.swift */; };
 		3CC3C02621A729A500AB86E0 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02521A729A500AB86E0 /* CustomImageView.swift */; };
@@ -56,7 +57,6 @@
 		3CC3C06021A7BBB900AB86E0 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C05F21A7BBB800AB86E0 /* TestData.swift */; };
 		3CC3C07021A7C10E00AB86E0 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C06221A7BCD300AB86E0 /* FeedController.swift */; };
 		3CC3C07121A7C11A00AB86E0 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C06B21A7BD7A00AB86E0 /* SearchController.swift */; };
-		3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CF1B90421A49133003EA849 /* GoogleService-Info.plist */; };
 		3CF1B90721A4957C003EA849 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1B90621A4957C003EA849 /* SignUpViewController.swift */; };
 		3CF1B90921A49D0E003EA849 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1B90821A49D0E003EA849 /* CheckBox.swift */; };
 		3CF1B90C21A4FF94003EA849 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF1B90B21A4FF94003EA849 /* TabBarController.swift */; };
@@ -89,6 +89,7 @@
 		3C56D20B21A3BB73008AFD3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GrandWaileaWalk.gpx; sourceTree = "<group>"; };
 		3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C9E6C5721C143C10040C3BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3CC3C02121A7293100AB86E0 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		3CC3C02321A7297500AB86E0 /* UnitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtension.swift; sourceTree = "<group>"; };
 		3CC3C02521A729A500AB86E0 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		3CC3C06221A7BCD300AB86E0 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		3CC3C06B21A7BD7A00AB86E0 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		3CC66C8C21A8EF3B00A332C4 /* NSD_TrailMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NSD_TrailMe.entitlements; sourceTree = "<group>"; };
-		3CF1B90421A49133003EA849 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3CF1B90621A4957C003EA849 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3CF1B90821A49D0E003EA849 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		3CF1B90B21A4FF94003EA849 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				3CC3C06F21A7BE0700AB86E0 /* Profile */,
 				3C56D20821A3BB73008AFD3B /* LaunchScreen.storyboard */,
 				3C56D20B21A3BB73008AFD3B /* Info.plist */,
-				3CF1B90421A49133003EA849 /* GoogleService-Info.plist */,
+				3C9E6C5721C143C10040C3BC /* GoogleService-Info.plist */,
 				3C56D20321A3BB72008AFD3B /* NSD_TrailMe.xcdatamodeld */,
 				3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */,
 				3CC3C02D21A731E400AB86E0 /* WaltersRoadLocation.gpx */,
@@ -374,6 +374,9 @@
 					3C56D1F821A3BB72008AFD3B = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -406,12 +409,12 @@
 			files = (
 				3C56D20A21A3BB73008AFD3B /* LaunchScreen.storyboard in Resources */,
 				3C56D20721A3BB73008AFD3B /* Assets.xcassets in Resources */,
-				3CF1B90521A49133003EA849 /* GoogleService-Info.plist in Resources */,
 				3C117CC921BDDA4D00D87BB9 /* Awards.storyboard in Resources */,
 				3C26262221BC512700579B77 /* Statistic.storyboard in Resources */,
 				3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */,
 				3CC3C03521A7B47200AB86E0 /* Alternate.storyboard in Resources */,
 				3C117CCD21BDDB5400D87BB9 /* AwardCellTableViewCell.xib in Resources */,
+				3C9E6C5821C143C10040C3BC /* GoogleService-Info.plist in Resources */,
 				3CC3C03C21A7B4BE00AB86E0 /* ActivityCollectionViewCell.xib in Resources */,
 				3CC3C04021A7B4BE00AB86E0 /* FollowCollectionViewCell.xib in Resources */,
 			);

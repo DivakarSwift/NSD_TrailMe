@@ -26,15 +26,20 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getFollowingPosts()
         fetchUserPosts()
-        getFollowingIDs()
-
     }
 
-    fileprivate func getFollowingIDs() {
+    fileprivate func getFollowingPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("follows").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let userIDsDictionary = snapshot.value as? [String:Any] else { return }
+            guard let userIDsDictionary = snapshot.value as? [String:Any] else {
+                return
+            }
             userIDsDictionary.forEach({ (key, value) in
                 Database.fetchUserWithUID(uid: key, completion: { (user) in
                     self.fetchPostsWith(user: user)
@@ -47,8 +52,8 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     @objc  func handleRefresh() {
         posts.removeAll(keepingCapacity: false)
+        getFollowingPosts()
         fetchUserPosts()
-        getFollowingIDs()
     }
 
     fileprivate func fetchUserPosts() {
