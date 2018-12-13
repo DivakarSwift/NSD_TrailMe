@@ -63,7 +63,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     fileprivate func fetchPostsWith(user: User) {
-        let reference = Database.database().reference().child("posts").child(user.uid)
+        let reference = Database.database().reference().child("posts").child(user.uid + "-" + user.username)
         reference.observeSingleEvent(of:.value, with: { (snapshot) in
             self.collectionView.refreshControl?.endRefreshing()
             guard let dictionaries = snapshot.value as? [String:Any] else { return }

@@ -304,7 +304,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     fileprivate func getActivityCount(id: String) {
-        Database.database().reference().child("posts").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let username = user?.username else { return }
+        Database.database().reference().child("posts").child(id + "-" + username).observeSingleEvent(of: .value, with: { (snapshot) in
             let count = snapshot.childrenCount
             self.activitiesLabel.text = "\(count)"
         }) { (error) in
@@ -315,7 +316,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
     fileprivate func fetchPostsWith(user: User) {
         self.posts.removeAll()
-        let reference = Database.database().reference().child("posts").child(user.uid)
+        let reference = Database.database().reference().child("posts").child(user.uid + "-" + user.username)
         reference.observeSingleEvent(of:.value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String:Any] else { return }
             dictionaries.forEach({ (key, value) in

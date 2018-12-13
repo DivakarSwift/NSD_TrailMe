@@ -14,9 +14,10 @@ class SearchCell: UICollectionViewCell {
         didSet {
             usernameLabel.text = user?.username
             guard let uid = user?.uid else { return }
+            guard let username = user?.username else { return }
             guard let profileImageUrl = user?.profileImageUrl else { return }
             profileImageView.loadImage(from: profileImageUrl)
-            getActivityCount(uid: uid)
+            getActivityCount(uid: uid, username: username)
         }
     }
 
@@ -57,8 +58,8 @@ class SearchCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    fileprivate func getActivityCount(uid: String) {
-        Database.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+    fileprivate func getActivityCount(uid: String, username: String) {
+        Database.database().reference().child("posts").child(uid + "-" + username).observeSingleEvent(of: .value, with: { (snapshot) in
             let count = snapshot.childrenCount
             if count == 1 {
                 self.userPostsLabel.text = "\(count) post"

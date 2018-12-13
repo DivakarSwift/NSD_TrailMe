@@ -193,6 +193,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         validUserName = false
         validEmail = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.color = .black
         setupUI()
         
         

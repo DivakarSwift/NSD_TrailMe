@@ -140,25 +140,37 @@ class ActivityDetailViewController: UIViewController {
         guard let duration = durationLabel.text else { return }
         guard let pace = paceLabel.text else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let userPostReference = Database.database().reference().child("posts").child(uid)
-        let reference = userPostReference.childByAutoId()
-        if let postNote = ActivityDetailViewController.note {
-            let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace,"note":postNote ,"creationDate":ServerValue.timestamp()] as [String : Any]
-            reference.updateChildValues(values) { (error, ref) in
-                if let err = error {
-                    print(err.localizedDescription)
-                    return
+        
+        let usernameReference = Database.database().reference().child("users").child(uid)
+        usernameReference.observe(.value, with: { (snapshot) in
+            guard let value = snapshot.value as? [String:Any] else { return }
+            let username = value["userName"] as? String ?? ""
+            let userPostReference = Database.database().reference().child("posts").child(uid + "-" + username)
+            let reference = userPostReference.childByAutoId()
+            if let postNote = ActivityDetailViewController.note {
+                let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace,"note":postNote ,"creationDate":ServerValue.timestamp()] as [String : Any]
+                reference.updateChildValues(values) { (error, ref) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                        return
+                    }
+                }
+            } else {
+                let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace, "creationDate":ServerValue.timestamp()] as [String : Any]
+                reference.updateChildValues(values) { (error, ref) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                        return
+                    }
                 }
             }
-        } else {
-            let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace, "creationDate":ServerValue.timestamp()] as [String : Any]
-            reference.updateChildValues(values) { (error, ref) in
-                if let err = error {
-                    print(err.localizedDescription)
-                    return
-                }
-            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
         }
+        
+        
+      
     }
     
     fileprivate func setupViews() {
