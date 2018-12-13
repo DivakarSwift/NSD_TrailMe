@@ -128,6 +128,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         tf.clearButtonMode = .always
         tf.returnKeyType = .next
         tf.autocorrectionType = .no
+        tf.textContentType = UITextContentType.emailAddress
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.addTarget(self, action: #selector(textEditingChangedEmail(_:)), for: .editingChanged)
         return tf
@@ -136,6 +137,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let passwordTextField: MDCTextField = {
         let tf = MDCTextField()
         tf.isSecureTextEntry = true
+        tf.textContentType = UITextContentType.newPassword
         tf.textColor = .black
         tf.clearButtonMode = .always
         tf.returnKeyType = .done
