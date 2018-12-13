@@ -13,16 +13,11 @@ import CoreLocation
 class HistoryDetailController: UIViewController {
     var activity: Activity!
     
-    let mapView: MKMapView = {
-        let map = MKMapView()
-        return map
-    }()
     
-    let noteView: UITextView = {
-        let tv = UITextView()
-        return tv
-    }()
-
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var distanceValue: UILabel!
+    @IBOutlet weak var durationValue: UILabel!
+    @IBOutlet weak var noteTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +25,8 @@ class HistoryDetailController: UIViewController {
         mapView.delegate = self
         title = "Detail"
         navigationController?.navigationBar.prefersLargeTitles = false
-        setupUI()
         loadMap()
-        loadNote()
-    }
-    
-    fileprivate func loadNote() {
-        guard let noteText = activity.note else { return }
-        noteView.text = "NOTE:\n\(noteText)"
-    }
-    
-    fileprivate func setupUI() {
-        let height = view.frame.height
-        view.addSubview(mapView)
-        view.addSubview(noteView)
-        
-        
-        mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 98, paddingLeft: 12, paddingBottom: 0, paddingRight: 12, width: 0, height: height / 2)
-        
-        noteView.anchor(top: mapView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 12, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
-        
+        configureViews()
     }
     
     fileprivate func mapRegion() -> MKCoordinateRegion? {
@@ -82,6 +59,20 @@ class HistoryDetailController: UIViewController {
         return MKCoordinateRegion(center: center, span: span)
     }
     
+    fileprivate func configureViews() {
+        let distance = Measurement(value: activity.distance, unit: UnitLength.meters)
+        let seconds = Int(activity.duration)
+        let formattedDistance = FormatDisplay.distance(distance)
+        let formattedTime = FormatDisplay.time(seconds)
+        
+        distanceValue.text = formattedDistance
+        durationValue.text = formattedTime
+        if let note = activity.note {
+            noteTextView.text = note
+        }
+       
+    }
+    
     fileprivate func loadMap() {
         guard
             let locations = activity.locations,
@@ -95,7 +86,7 @@ class HistoryDetailController: UIViewController {
                 present(alert, animated: true)
                 return
         }
-        
+
         mapView.setRegion(region, animated: true)
         mapView.addOverlay(polyLine())
     }

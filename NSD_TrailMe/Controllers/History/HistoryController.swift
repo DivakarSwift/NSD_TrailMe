@@ -81,9 +81,11 @@ class HistoryController: UITableViewController, NSFetchedResultsControllerDelega
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let destination = HistoryDetailController()
-        destination.activity = fetchedResultsController.object(at: indexPath)
-        navigationController?.pushViewController(destination, animated: true)
+        let storyboard = UIStoryboard(name: "HistoryDetails", bundle: nil)
+        if let destination = storyboard.instantiateViewController(withIdentifier: "HistoryDetailsController") as? HistoryDetailController {
+            destination.activity = fetchedResultsController.object(at: indexPath)
+            navigationController?.pushViewController(destination, animated: true)
+        }
     }
 }
 

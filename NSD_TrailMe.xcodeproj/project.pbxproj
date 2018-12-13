@@ -27,6 +27,7 @@
 		3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */; };
 		3C6E3A8E21A441EA00FBA0D0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */; };
 		3C9E6C5821C143C10040C3BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C9E6C5721C143C10040C3BC /* GoogleService-Info.plist */; };
+		3CA0947721C2F53A00CF2BEB /* HistoryDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CA0947621C2F53A00CF2BEB /* HistoryDetails.storyboard */; };
 		3CC3C02221A7293100AB86E0 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02121A7293100AB86E0 /* Formatter.swift */; };
 		3CC3C02421A7297500AB86E0 /* UnitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02321A7297500AB86E0 /* UnitExtension.swift */; };
 		3CC3C02621A729A500AB86E0 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3C02521A729A500AB86E0 /* CustomImageView.swift */; };
@@ -90,6 +91,7 @@
 		3C612EDC21A9A627009A312B /* GrandWaileaWalk.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GrandWaileaWalk.gpx; sourceTree = "<group>"; };
 		3C6E3A8D21A441EA00FBA0D0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3C9E6C5721C143C10040C3BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3CA0947621C2F53A00CF2BEB /* HistoryDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HistoryDetails.storyboard; sourceTree = "<group>"; };
 		3CC3C02121A7293100AB86E0 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		3CC3C02321A7297500AB86E0 /* UnitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitExtension.swift; sourceTree = "<group>"; };
 		3CC3C02521A729A500AB86E0 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				3CF1B91521A501EC003EA849 /* HistoryController.swift */,
 				3CC3C03221A79F1800AB86E0 /* HistoryDetailController.swift */,
 				3CC3C03021A73C5200AB86E0 /* HistoryCell.swift */,
+				3CA0947621C2F53A00CF2BEB /* HistoryDetails.storyboard */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				3C26262221BC512700579B77 /* Statistic.storyboard in Resources */,
 				3C612EDD21A9A627009A312B /* GrandWaileaWalk.gpx in Resources */,
 				3CC3C03521A7B47200AB86E0 /* Alternate.storyboard in Resources */,
+				3CA0947721C2F53A00CF2BEB /* HistoryDetails.storyboard in Resources */,
 				3C117CCD21BDDB5400D87BB9 /* AwardCellTableViewCell.xib in Resources */,
 				3C9E6C5821C143C10040C3BC /* GoogleService-Info.plist in Resources */,
 				3CC3C03C21A7B4BE00AB86E0 /* ActivityCollectionViewCell.xib in Resources */,
