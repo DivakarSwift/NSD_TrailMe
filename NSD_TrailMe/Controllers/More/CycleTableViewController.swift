@@ -62,9 +62,10 @@ class CycleTableViewController: UITableViewController {
                 distance += miles
             }
             let avgDistance = distance / Double(distances.count)
+            let truncAvgDistance = Double(String(format: "%.1f", (avgDistance * 10000)).dropLast(2))!/10000
             temp = stats.remove(at: 2)
             _ = temp.remove(at: 2)
-            temp.insert(avgDistance, at: 2)
+            temp.insert(truncAvgDistance, at: 2)
             stats.insert(temp, at: 2)
 
             self.tableView.reloadData()
@@ -111,9 +112,10 @@ class CycleTableViewController: UITableViewController {
                 distance += miles
             }
             let avgDistance = distance / Double(distances.count)
+            let truncAvgDistance = Double(String(format: "%.1f", (avgDistance * 10000)).dropLast(2))!/10000
             temp = stats.remove(at: 0)
             _ = temp.remove(at: 2)
-            temp.insert(avgDistance, at: 2)
+            temp.insert(truncAvgDistance, at: 2)
             stats.insert(temp, at: 0)
 
             self.tableView.reloadData()
@@ -161,9 +163,10 @@ class CycleTableViewController: UITableViewController {
                 distance += miles
             }
             let avgDistance = distance / Double(distances.count)
+            let truncAvgDistance = Double(String(format: "%.1f", (avgDistance * 10000)).dropLast(2))!/10000
             temp = stats.remove(at: 1)
             _ = temp.remove(at: 2)
-            temp.insert(avgDistance, at: 2)
+            temp.insert(truncAvgDistance, at: 2)
             stats.insert(temp, at: 1)
 
             self.tableView.reloadData()

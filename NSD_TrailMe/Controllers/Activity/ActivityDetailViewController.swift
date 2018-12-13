@@ -121,16 +121,18 @@ class ActivityDetailViewController: UIViewController {
     }
     @objc func handleAddNote() {
         let noteController = NoteController()
+        NoteController.noteOut = ActivityDetailViewController.note
         navigationController?.pushViewController(noteController, animated: true)
     }
     
     fileprivate func displayNote () {
-        if let noteText = ActivityDetailViewController.note {
+        guard let noteText = ActivityDetailViewController.note, noteText.count > 0  else{
+            noteTextView.text = "No note for this activity"
+            return }
+
             noteTextView.text = noteText
-            activity.note = noteText
+            activity.note = noteTextView.text
             CoreDataStack.saveContext()
-            ActivityDetailViewController.note = nil
-        }
     }
     fileprivate func saveToDatabase(with imageUrl: String){
         UserDefaults.standard.set(true, forKey: "hasPosts")
@@ -214,7 +216,7 @@ class ActivityDetailViewController: UIViewController {
         activityIndicator.anchor(top: paceTitleLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 30)
+        noteTextView.anchor(top: activityIndicator.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 100)
         
         staticMapImageView.anchor(top: noteTextView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 200, height: 100)
         staticMapImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

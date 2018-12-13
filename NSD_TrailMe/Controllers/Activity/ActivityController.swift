@@ -307,6 +307,7 @@ class ActivityController: UIViewController {
             self.currentCoordinate = nil
             let detailController = ActivityDetailViewController()
             detailController.activity = self.activity
+            ActivityDetailViewController.note = nil
             self.navigationController?.pushViewController(detailController, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (_) in

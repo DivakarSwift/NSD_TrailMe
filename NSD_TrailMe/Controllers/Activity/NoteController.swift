@@ -14,6 +14,9 @@ class NoteController: UIViewController {
         tv.font = UIFont.systemFont(ofSize: 14)
         return tv
     }()
+    
+    static var noteOut: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = backColor
@@ -24,7 +27,16 @@ class NoteController: UIViewController {
         
         view.addSubview(noteForm)
         noteForm.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 80, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 400)
+       
         noteForm.becomeFirstResponder()
+        setText()
+    }
+    
+    func setText() {
+        guard let contents = NoteController.noteOut else {
+            return
+        }
+        noteForm.text.append(contents)
     }
     
     @objc func handleCancel(){
