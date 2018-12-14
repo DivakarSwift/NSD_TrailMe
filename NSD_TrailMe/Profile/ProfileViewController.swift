@@ -304,8 +304,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     fileprivate func getActivityCount(id: String) {
-        guard let username = user?.username else { return }
-        Database.database().reference().child("posts").child(id + "-" + username).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("posts").child(id).observeSingleEvent(of: .value, with: { (snapshot) in
             let count = snapshot.childrenCount
             self.activitiesLabel.text = "\(count)"
         }) { (error) in

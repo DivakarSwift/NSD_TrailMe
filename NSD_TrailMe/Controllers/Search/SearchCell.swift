@@ -59,7 +59,7 @@ class SearchCell: UICollectionViewCell {
     }
 
     fileprivate func getActivityCount(uid: String, username: String) {
-        Database.database().reference().child("posts").child(uid + "-" + username).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("posts").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let count = snapshot.childrenCount
             if count == 1 {
                 self.userPostsLabel.text = "\(count) post"
