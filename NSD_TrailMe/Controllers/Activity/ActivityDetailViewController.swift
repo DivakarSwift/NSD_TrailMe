@@ -129,10 +129,10 @@ class ActivityDetailViewController: UIViewController {
         guard let noteText = ActivityDetailViewController.note, noteText.count > 0  else{
             noteTextView.text = "No note for this activity"
             return }
-
-            noteTextView.text = noteText
-            activity.note = noteTextView.text
-            CoreDataStack.saveContext()
+        
+        noteTextView.text = noteText
+        activity.note = noteTextView.text
+        CoreDataStack.saveContext()
     }
     fileprivate func saveToDatabase(with imageUrl: String){
         UserDefaults.standard.set(true, forKey: "hasPosts")
@@ -142,37 +142,25 @@ class ActivityDetailViewController: UIViewController {
         guard let duration = durationLabel.text else { return }
         guard let pace = paceLabel.text else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let usernameReference = Database.database().reference().child("users").child(uid)
-        usernameReference.observe(.value, with: { (snapshot) in
-            guard let value = snapshot.value as? [String:Any] else { return }
-            let username = value["userName"] as? String ?? ""
-            let userPostReference = Database.database().reference().child("posts").child(uid + "-" + username)
-            let reference = userPostReference.childByAutoId()
-            if let postNote = ActivityDetailViewController.note {
-                let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace,"note":postNote ,"creationDate":ServerValue.timestamp()] as [String : Any]
-                reference.updateChildValues(values) { (error, ref) in
-                    if let err = error {
-                        print(err.localizedDescription)
-                        return
-                    }
-                }
-            } else {
-                let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace, "creationDate":ServerValue.timestamp()] as [String : Any]
-                reference.updateChildValues(values) { (error, ref) in
-                    if let err = error {
-                        print(err.localizedDescription)
-                        return
-                    }
+        let userPostReference = Database.database().reference().child("posts").child(uid)
+        let reference = userPostReference.childByAutoId()
+        if let postNote = ActivityDetailViewController.note {
+            let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace,"note":postNote ,"creationDate":ServerValue.timestamp()] as [String : Any]
+            reference.updateChildValues(values) { (error, ref) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
                 }
             }
-            
-        }) { (error) in
-            print(error.localizedDescription)
+        } else {
+            let values = ["imageUrl" : imageUrl, "category":category, "date":date, "duration":duration, "distance":distance, "pace":pace, "creationDate":ServerValue.timestamp()] as [String : Any]
+            reference.updateChildValues(values) { (error, ref) in
+                if let err = error {
+                    print(err.localizedDescription)
+                    return
+                }
+            }
         }
-        
-        
-      
     }
     
     fileprivate func setupViews() {
@@ -193,7 +181,7 @@ class ActivityDetailViewController: UIViewController {
         view.addSubview(activityIndicator)
         view.addSubview(staticMapImageView)
         view.addSubview(noteTextView)
-       
+        
         
         activityIndicator.color = mainColor
         mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 92, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: height / 4)

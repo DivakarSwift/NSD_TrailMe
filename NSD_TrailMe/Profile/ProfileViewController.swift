@@ -316,7 +316,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
     fileprivate func fetchPostsWith(user: User) {
         self.posts.removeAll()
-        let reference = Database.database().reference().child("posts").child(user.uid + "-" + user.username)
+        let reference = Database.database().reference().child("posts").child(user.uid)
         reference.observeSingleEvent(of:.value, with: { (snapshot) in
             guard let dictionaries = snapshot.value as? [String:Any] else { return }
             dictionaries.forEach({ (key, value) in
